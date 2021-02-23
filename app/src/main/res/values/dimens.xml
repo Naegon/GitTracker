@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Margin-->
+    <dimen name="margin_horizontal_double">32dp</dimen>
+    <dimen name="margin_vertical_double">24dp</dimen>
+
+    <dimen name="margin_horizontal">24dp</dimen>
+    <dimen name="margin_vertical">16dp</dimen>
+
+    <!-- Radius -->
+    <dimen name="corner_radius">8dp</dimen>
+
+    <!-- Text-->
+    <dimen name="title">24sp</dimen>
+    <dimen name="text_button">20sp</dimen>
+    <dimen name="text_big">16sp</dimen>
+    <dimen name="text">12sp</dimen>
+</resources>
