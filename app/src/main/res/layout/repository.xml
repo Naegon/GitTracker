@@ -26,13 +26,15 @@
 
             <TextView
                 android:id="@+id/text_view_app_name"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="App Name"
                 android:textSize="@dimen/title"
                 android:textStyle="bold"
+                android:gravity="start"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/text_view_language"/>
 
             <TextView
                 android:id="@+id/text_view_owner"
@@ -62,6 +64,7 @@
                 android:textSize="@dimen/text"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/text_view_app_name"
                 android:textColor="@color/purple" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
