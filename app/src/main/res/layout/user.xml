@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linear_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:clipToPadding="false">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/corner_radius"
+        app:cardElevation="1dp"
+        app:contentPaddingTop="@dimen/padding_vertical"
+        app:contentPaddingBottom="@dimen/padding_vertical"
+        app:contentPaddingLeft="@dimen/padding_horizontal"
+        app:contentPaddingRight="@dimen/padding_horizontal"
+        android:layout_marginVertical="8dp"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_double">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:srcCompat="@drawable/git_avatar"
+                style="@style/circleImageView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <TextView
+                android:id="@+id/text_view_app_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="App Name"
+                android:textSize="@dimen/title"
+                android:textStyle="bold"
+                android:gravity="start"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/text_view_language"/>
+
+            <TextView
+                android:id="@+id/text_view_owner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Owner"
+                android:textSize="@dimen/text_big"
+                android:textStyle="italic"
+                app:layout_constraintTop_toBottomOf="@id/text_view_app_name"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/text_view_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Short description of the project"
+                android:textSize="@dimen/text"
+                android:layout_marginTop="@dimen/margin_vertical"
+                app:layout_constraintTop_toBottomOf="@id/text_view_owner"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/text_view_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Language"
+                android:textSize="@dimen/text"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/text_view_app_name"
+                android:textColor="@color/purple" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>
