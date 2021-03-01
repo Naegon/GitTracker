@@ -11,10 +11,10 @@ import org.json.JSONObject;
 
 import java.util.Vector;
 
-class MyAdapter extends BaseAdapter {
+class RepoAdapter extends BaseAdapter {
     private final Vector<JSONObject> data;
 
-    public MyAdapter() {
+    public RepoAdapter() {
         data = new Vector<>();
     }
 

@@ -1,19 +1,15 @@
 package com.test.gittracker;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
 
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -22,7 +18,6 @@ import com.google.android.material.appbar.MaterialToolbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -33,7 +28,7 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
     private ListView listView;
-    private MyAdapter myAdapter = new MyAdapter();
+    private RepoAdapter repoAdapter = new RepoAdapter();
     private String target = "Naegon";
 
     @Override
@@ -42,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listView = findViewById(R.id.listview);
-        listView.setAdapter(myAdapter);
+        listView.setAdapter(repoAdapter);
         ViewCompat.setNestedScrollingEnabled(listView, true);
 
         MaterialToolbar topAppBar = findViewById(R.id.topAppBar);
@@ -118,10 +113,10 @@ public class MainActivity extends AppCompatActivity {
 
                     for (int i = 0; i < result.length(); i++) {
                         Log.i("Git_API", result.get(i).toString());
-                        myAdapter.add(result.get(i));
+                        repoAdapter.add(result.get(i));
                     }
 
-                    runOnUiThread(() -> myAdapter.notifyDataSetChanged());
+                    runOnUiThread(() -> repoAdapter.notifyDataSetChanged());
 
                 } finally {
                     urlConnection.disconnect();
