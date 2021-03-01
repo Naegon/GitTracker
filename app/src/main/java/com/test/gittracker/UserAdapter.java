@@ -77,7 +77,6 @@ class UserAdapter extends BaseAdapter {
             e.printStackTrace();
         }
 
-
         return convertView;
     }
 }
