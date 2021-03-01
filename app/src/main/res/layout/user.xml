@@ -24,57 +24,88 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                app:srcCompat="@drawable/git_avatar"
-                style="@style/circleImageView"
+            <LinearLayout
+                android:id="@+id/left_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent" />
+                app:layout_constraintBottom_toBottomOf="parent" >
 
-            <TextView
-                android:id="@+id/text_view_app_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="App Name"
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/avatar"
+                    android:layout_width="84dp"
+                    android:layout_height="84dp"
+                    app:srcCompat="@drawable/git_avatar"
+                    app:shapeAppearanceOverlay="@style/circleImageView"
+                    android:layout_gravity="center"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_follow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Follow" />
+            </LinearLayout>
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_username"
                 android:textSize="@dimen/title"
                 android:textStyle="bold"
-                android:gravity="start"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_horizontal"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/text_view_language"/>
+                app:layout_constraintLeft_toRightOf="@id/left_layout"
+                app:layout_constraintRight_toLeftOf="@id/img_learn_more"
+                android:text="Username"/>
 
-            <TextView
-                android:id="@+id/text_view_owner"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_company"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Owner"
-                android:textSize="@dimen/text_big"
                 android:textStyle="italic"
-                app:layout_constraintTop_toBottomOf="@id/text_view_app_name"
-                app:layout_constraintStart_toStartOf="parent"/>
+                android:layout_marginStart="@dimen/margin_horizontal"
+                android:drawableStart="@drawable/ic_company"
+                android:drawablePadding="@dimen/padding_horizontal"
+                app:layout_constraintTop_toBottomOf="@id/text_view_username"
+                app:layout_constraintLeft_toRightOf="@id/left_layout"
+                android:text="Company"/>
 
-            <TextView
-                android:id="@+id/text_view_description"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_repositories"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Short description of the project"
-                android:textSize="@dimen/text"
-                android:layout_marginTop="@dimen/margin_vertical"
-                app:layout_constraintTop_toBottomOf="@id/text_view_owner"
-                app:layout_constraintStart_toStartOf="parent"/>
+                android:layout_marginStart="@dimen/margin_horizontal"
+                android:drawableStart="@drawable/ic_repository"
+                android:drawablePadding="@dimen/padding_horizontal"
+                app:layout_constraintBottom_toTopOf="@id/text_view_followers"
+                app:layout_constraintLeft_toRightOf="@id/left_layout"
+                android:text="XX repository(ies)"/>
 
-            <TextView
-                android:id="@+id/text_view_language"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_followers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Language"
-                android:textSize="@dimen/text"
+                android:layout_marginStart="@dimen/margin_horizontal"
+                android:drawableStart="@drawable/ic_followers"
+                android:drawablePadding="@dimen/padding_horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/left_layout"
+                android:text="XX follower(s)"/>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/img_learn_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_information"
+                app:tint="@color/purple"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/text_view_app_name"
-                android:textColor="@color/purple" />
+                app:layout_constraintRight_toRightOf="parent"
+                android:text="Learn more"/>
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
