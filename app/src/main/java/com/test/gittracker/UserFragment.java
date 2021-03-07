@@ -4,10 +4,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 
+import java.lang.ref.WeakReference;
+
 public class UserFragment extends Fragment {
+    private ListView listView;
+    private UserAdapter userAdapter = new UserAdapter();
+    private String target = "Naegon";
 
     public UserFragment() {
         // Required empty public constructor
@@ -35,6 +42,17 @@ public class UserFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_user, container, false);
+
+        listView = view.findViewById(R.id.listview);
+        listView.setAdapter(userAdapter);
+        ViewCompat.setNestedScrollingEnabled(listView, true);
+
+        AsyncGitJSONDataForList task = new AsyncGitJSONDataForList(new WeakReference<>(userAdapter));
+        String url = "https://api.github.com/users/BenRoecker/followers";
+        task.execute(url);
+
+        return view;
     }
 }
