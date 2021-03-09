@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/purple"
+    tools:context=".LoginActivity"
+    android:paddingHorizontal="@dimen/margin_horizontal_double" >
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image_bycicle"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_marginVertical="@dimen/margin_vertical_double"
+        android:tint="@color/white"
+        android:src="@drawable/ic_repository"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/editTextPseudo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/margin_vertical_double"
+
+        android:hint="Pseudo"
+        app:startIconDrawable="@drawable/ic_repository"
+
+        style="@style/Field"
+        app:layout_constraintTop_toBottomOf="@id/image_bycicle" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/editTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/margin_vertical_double"
+
+        android:hint="Password"
+        app:startIconDrawable="@drawable/ic_search"
+        app:endIconMode="password_toggle"
+
+        style="@style/Field"
+        app:layout_constraintTop_toBottomOf="@id/editTextPseudo" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <CheckBox
+        android:id="@+id/checkBoxConnect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_vertical_double"
+        android:text="Rester connecté"
+        android:textColor="@color/white"
+        android:buttonTint="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/editTextPassword"/>
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/purple_dark"
+        android:shadowColor="@color/purple_dark"
+        style="@style/Button"
+        android:text="Connection"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxConnect" />
+
+    <TextView
+        android:id="@+id/textViewRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:text="Pas encore de compte ? En créer un"
+        app:layout_constraintTop_toBottomOf="@id/btnLogin" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
