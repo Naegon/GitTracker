@@ -20,4 +20,11 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
     </style>
+
+    <style name="ThemeOverlay.Toobar" parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
+        <!-- Text color -->
+        <item name="android:editTextColor">@color/white</item>
+        <!-- Hint text color -->
+        <item name="android:textColorHint">@color/white</item>
+    </style>
 </resources>

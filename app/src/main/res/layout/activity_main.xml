@@ -17,25 +17,25 @@
             app:title="@string/app_name"
             app:titleMarginStart="@dimen/margin_horizontal_double"
             app:titleTextColor="@color/white"
-            style="@style/Widget.MaterialComponents.Toolbar.Primary" />
+            android:theme="@style/ThemeOverlay.Toobar" />
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?attr/colorPrimary"
-                app:tabTextColor="@color/purple_light"
-                app:tabSelectedTextColor="@color/white"
-                app:tabIndicatorColor="@color/purple_light"
-                app:tabMode="fixed"
-                app:tabGravity="fill"
-                android:backgroundTint="@color/purple" />
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            app:tabTextColor="@color/purple_light"
+            app:tabSelectedTextColor="@color/white"
+            app:tabIndicatorColor="@color/purple_light"
+            app:tabMode="fixed"
+            app:tabGravity="fill"
+            android:backgroundTint="@color/purple" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
