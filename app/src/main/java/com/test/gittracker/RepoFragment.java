@@ -22,7 +22,6 @@ import java.net.URL;
 public class RepoFragment extends Fragment {
     private ListView listView;
     private RepoAdapter repoAdapter = new RepoAdapter();
-    private String target = "Naegon";
 
     public RepoFragment() {
         // Required empty public constructor
@@ -56,15 +55,18 @@ public class RepoFragment extends Fragment {
         listView.setAdapter(repoAdapter);
 //        ViewCompat.setNestedScrollingEnabled(listView, true);
 
-        Refresh();
+        MainActivity mainActivity = (MainActivity)getActivity();
+        String target = mainActivity.getTarget();
+        Refresh(target);
 
         return view;
     }
 
-    private void Refresh() {
+    private void Refresh(String target) {
         new Thread(() -> {
             URL url;
             try {
+
                 url = new URL("https://api.github.com/users/" + target + "/repos");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 //                String basicAuth = "Basic " + Base64.encodeToString(("Naegon:zFqi58Cmvw").getBytes(), Base64.NO_WRAP);

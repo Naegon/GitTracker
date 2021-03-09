@@ -107,4 +107,8 @@ public class MainActivity extends AppCompatActivity {
             target = query;
         }
     }
+
+    public String getTarget() {
+        return target;
+    }
 }
