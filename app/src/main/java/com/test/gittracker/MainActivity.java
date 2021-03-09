@@ -1,5 +1,8 @@
 package com.test.gittracker;
 
+import android.app.SearchManager;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -7,12 +10,14 @@ import android.view.MenuInflater;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
+    private String target = "Naegon";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
                     Log.i("UI", "Settings");
                     return true;
                 case R.id.search:
-//                    findViewById(R.id.editTextSearch).setVisibility(View.VISIBLE);
                     Log.i("UI", "Search");
                     return true;
                 default:
@@ -52,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
                 Toast.makeText(MainActivity.this,
                         "Selected page position: " + position, Toast.LENGTH_SHORT).show();
-//                viewPager.setCurrentItem(tabLayout.getSelectedTabPosition());
             }
 
             // This method will be invoked when the current page is scrolled
@@ -68,6 +71,9 @@ public class MainActivity extends AppCompatActivity {
                 // Code goes here
             }
         });
+
+        Log.i("Search", "Working");
+        handleIntent(getIntent());
     }
 
     @Override
@@ -76,14 +82,29 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.app_bar, menu);
 
         // Associate searchable configuration with the SearchView
-
-//        SearchManager searchManager =
-//                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-//        SearchView searchView =
-//                (SearchView) menu.findItem(R.id.search).getActionView();
-//        searchView.setSearchableInfo(
-//                searchManager.getSearchableInfo(getComponentName()));
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
 
         return true;
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Log.i("Search", "Intent called");
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent) {
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            Toast.makeText(this, "Searching for " + query, Toast.LENGTH_LONG).show();
+            Log.i("Search", "Search action on " + query);
+            target = query;
+        }
     }
 }
