@@ -10,12 +10,12 @@
 
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/image_bycicle"
+        android:id="@+id/logo"
         android:layout_width="match_parent"
         android:layout_height="240dp"
         android:layout_marginVertical="@dimen/margin_vertical_double"
         android:tint="@color/white"
-        android:src="@drawable/ic_repository"
+        android:src="@drawable/ic_gittracker"
         app:layout_constraintTop_toTopOf="parent"/>
 
 
@@ -29,7 +29,7 @@
         app:startIconDrawable="@drawable/ic_repository"
 
         style="@style/Field"
-        app:layout_constraintTop_toBottomOf="@id/image_bycicle" >
+        app:layout_constraintTop_toBottomOf="@id/logo" >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditPseudo"
