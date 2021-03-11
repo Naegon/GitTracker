@@ -32,6 +32,7 @@
         app:layout_constraintTop_toBottomOf="@id/image_bycicle" >
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditPseudo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName" />
@@ -53,6 +54,7 @@
         app:layout_constraintTop_toBottomOf="@id/editTextPseudo" >
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword" />
@@ -64,7 +66,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_vertical_double"
-        android:text="Rester connecté"
+        android:text="Stay connected"
         android:textColor="@color/white"
         android:buttonTint="@color/white"
         app:layout_constraintTop_toBottomOf="@id/editTextPassword"/>
@@ -76,7 +78,7 @@
         android:backgroundTint="@color/purple_dark"
         android:shadowColor="@color/purple_dark"
         style="@style/Button"
-        android:text="Connection"
+        android:text="Login"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxConnect" />
 
     <TextView
@@ -85,7 +87,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:textAlignment="center"
-        android:text="Pas encore de compte ? En créer un"
+        android:text="No profile yet? Register"
         app:layout_constraintTop_toBottomOf="@id/btnLogin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
