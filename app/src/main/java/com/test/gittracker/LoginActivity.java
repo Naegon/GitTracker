@@ -1,5 +1,6 @@
 package com.test.gittracker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -7,7 +8,6 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 public class LoginActivity extends AppCompatActivity {
     private TextInputEditText textInputEditPseudo;
@@ -30,22 +30,26 @@ public class LoginActivity extends AppCompatActivity {
     private final View.OnClickListener login = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            String pseudo = textInputEditPseudo.getText().toString();
-            String password = textInputEditPassword.getText().toString();
 
-            TextInputLayout editTextPseudo = findViewById(R.id.editTextPseudo);
-            TextInputLayout editTextPassword = findViewById(R.id.editTextPassword);
+            Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+            startActivity(intent);
 
-            if (pseudo.equals("")) {
-
-                editTextPseudo.setErrorEnabled(true);
-                editTextPseudo.setError("This field is required");
-            } else editTextPseudo.setErrorEnabled(false);
-
-            if (password.equals("")) {
-                editTextPassword.setErrorEnabled(true);
-                editTextPassword.setError("This field is required");
-            } else editTextPassword.setErrorEnabled(false);
+//            String pseudo = textInputEditPseudo.getText().toString();
+//            String password = textInputEditPassword.getText().toString();
+//
+//            TextInputLayout editTextPseudo = findViewById(R.id.editTextPseudo);
+//            TextInputLayout editTextPassword = findViewById(R.id.editTextPassword);
+//
+//            if (pseudo.equals("")) {
+//
+//                editTextPseudo.setErrorEnabled(true);
+//                editTextPseudo.setError("This field is required");
+//            } else editTextPseudo.setErrorEnabled(false);
+//
+//            if (password.equals("")) {
+//                editTextPassword.setErrorEnabled(true);
+//                editTextPassword.setError("This field is required");
+//            } else editTextPassword.setErrorEnabled(false);
         }
     };
 }

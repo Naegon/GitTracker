@@ -3,6 +3,7 @@ package com.test.gittracker;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -10,7 +11,9 @@ import android.view.MenuInflater;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SearchView;
+import androidx.preference.PreferenceManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.appbar.MaterialToolbar;
@@ -21,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        loadSettings();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -38,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
             int id = item.getItemId();
             switch (id) {
                 case R.id.settings:
-                    Log.i("UI", "Settings");
+                    Intent intent = new Intent(this, SettingsActivity.class);
+                    startActivity(intent);
                     return true;
                 case R.id.search:
                     Log.i("UI", "Search");
@@ -110,5 +116,16 @@ public class MainActivity extends AppCompatActivity {
 
     public String getTarget() {
         return target;
+    }
+
+    public void loadSettings() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean darkTheme = sp.getBoolean("darkTheme", false);
+        if (darkTheme) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+        else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
     }
 }
