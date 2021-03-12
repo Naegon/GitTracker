@@ -1,6 +1,5 @@
 package com.test.gittracker;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -14,15 +13,6 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean darkTheme = sp.getBoolean("darkTheme", false);
-        if (darkTheme) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }
-        else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
         if (savedInstanceState == null) {
@@ -43,8 +33,15 @@ public class SettingsActivity extends AppCompatActivity {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
 
             findPreference("darkTheme").setOnPreferenceChangeListener((preference, newValue) -> {
-                Intent intent = new Intent(getContext(), SettingsActivity.class);
-                startActivity(intent);
+                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(requireContext());
+                boolean darkTheme = sp.getBoolean("darkTheme", false);
+                if (darkTheme) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }
+                else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                }
+                requireActivity().recreate();
                 return true;
             });
         }
