@@ -89,20 +89,36 @@
         </LinearLayout>
 
         <!--And finally this is the body of the backdrop's content. You can add here whatever you need inside a view group (LinearLayout, RelativeLayout, SwipeRefreshLayout, ConstraintLayout, etc.)-->
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swiperefresh"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/green">
+            android:background="@color/white"
+            android:paddingHorizontal="@dimen/margin_horizontal_double"
+            android:paddingVertical="@dimen/margin_vertical_double" >
 
-            <!--The content's body goes here-->
-            <androidx.appcompat.widget.AppCompatTextView
+            <ListView
+                android:id="@+id/listview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="test" />
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                android:divider="@android:color/transparent"
+                android:visibility="gone"/>
 
+            <TextView
+                android:id="@+id/nothingToShow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Nothin to show here. Try making a research!"
+                android:textSize="@dimen/title"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/logo"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:src="@drawable/ic_gittracker"
+                app:layout_constraintTop_toBottomOf="@id/nothingToShow"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
-
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
