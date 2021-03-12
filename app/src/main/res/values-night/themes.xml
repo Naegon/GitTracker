@@ -14,6 +14,8 @@
         <!-- Customize your theme here. -->
         <item name="android:textSize">@dimen/text</item>
         <item name="android:textColor">@color/white</item>
+        <item name="android:iconTint">@color/white</item>
+        <item name="android:drawableTint">@color/white</item>
     </style>
 
     <style name="circleImageView">
@@ -26,6 +28,7 @@
         <item name="android:editTextColor">@color/white</item>
         <!-- Hint text color -->
         <item name="android:textColorHint">@color/white</item>
+        <item name="android:drawableTint">@color/white</item>
     </style>
 
     <style name="Field">
