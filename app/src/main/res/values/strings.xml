@@ -1,21 +1,23 @@
 <resources>
     <string name="app_name">GitTracker</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_settings">SettingsActivity</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
 
-    <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
-
-    <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <!-- Login page -->
+    <string name="pseudo">Pseudo</string>
+    <string name="password">Password</string>
+    <string name="General">General</string>
+    <string name="dark_theme">Dark theme</string>
+    <string name="dark_mode_summary">Dark mode</string>
+    <string name="light_mode_summary">Light mode</string>
+    <string name="language">Language</string>
+    <string name="profile">Profile</string>
+    <string name="change">Change</string>
+    <string name="back_btn">Back</string>
+    <string name="change_password">Change password</string>
+    <string name="stay_connected">Stay connected</string>
+    <string name="login">Login</string>
+    <string name="no_profile">No profile yet? Register</string>
 </resources>

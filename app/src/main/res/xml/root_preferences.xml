@@ -2,38 +2,38 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        app:title="General">
+        app:title="@string/General">
 
         <SwitchPreferenceCompat
             app:key="darkTheme"
-            app:title="Dark theme"
+            app:title="@string/dark_theme"
             app:defaultValue="false"
-            app:summaryOn="Night mode activated"
-            app:summaryOff="Light mode activated" />
+            app:summaryOn="@string/dark_mode_summary"
+            app:summaryOff="@string/light_mode_summary" />
 
         <ListPreference
             app:key="language"
-            app:title="Language"
+            app:title="@string/language"
             app:entries="@array/language_entries"
             app:entryValues="@array/language_values"
-            app:defaultValue="English"
+            app:defaultValue="en"
             app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
 
     <PreferenceCategory
-        app:title="Profile">
+        app:title="@string/profile">
 
         <EditTextPreference
             app:key="pseudo"
-            app:title="Pseudo"
+            app:title="@string/pseudo"
             app:useSimpleSummaryProvider="true"
-            android:positiveButtonText="Change"
-            android:negativeButtonText="Back"
+            android:positiveButtonText="@string/change"
+            android:negativeButtonText="@string/back_btn"
             android:persistent="true"/>
 
         <EditTextPreference
             app:key="password"
-            app:title="Change password"
+            app:title="@string/change_password"
             app:useSimpleSummaryProvider="false" />
     </PreferenceCategory>
 </PreferenceScreen>
