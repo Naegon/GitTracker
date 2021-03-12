@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             int id = item.getItemId();
             switch (id) {
                 case R.id.settings:
-                    Intent intent = new Intent(this, SettingsActivity.class);
+                    Intent intent = new Intent(this, SearchActivity.class);
                     startActivity(intent);
                     return true;
                 case R.id.search:
