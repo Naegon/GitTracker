@@ -49,8 +49,11 @@ public class UserFragment extends Fragment {
         listView.setAdapter(userAdapter);
         ViewCompat.setNestedScrollingEnabled(listView, true);
 
+        MainActivity mainActivity = (MainActivity)getActivity();
+        String target = mainActivity.getTarget();
+
         AsyncGitJSONDataForList task = new AsyncGitJSONDataForList(new WeakReference<>(userAdapter));
-        String url = "https://api.github.com/users/BenRoecker/followers";
+        String url = "https://api.github.com/search/users?q=" + target + "&order=desc&per_page=15";
         task.execute(url);
 
         return view;

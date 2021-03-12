@@ -5,6 +5,7 @@ import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -14,9 +15,9 @@ import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-class AsyncGitJSONDataForList extends AsyncTask<String, Void, JSONArray> {
+class AsyncGitJSONDataForList extends AsyncTask<String, Void, JSONObject> {
     private URL url;
-    private JSONArray result;
+    private JSONObject result;
     private final WeakReference<UserAdapter> userAdapter;
 
     public AsyncGitJSONDataForList(WeakReference<UserAdapter> userAdapter) {
@@ -24,7 +25,7 @@ class AsyncGitJSONDataForList extends AsyncTask<String, Void, JSONArray> {
     }
 
     @Override
-    protected JSONArray doInBackground(String... strings) {
+    protected JSONObject doInBackground(String... strings) {
         try {
             url = new URL(strings[0]);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -33,7 +34,7 @@ class AsyncGitJSONDataForList extends AsyncTask<String, Void, JSONArray> {
                 String s = readStream(in);
                 Log.i("JFL", s);
 
-                result = new JSONArray(s);
+                result = new JSONObject(s);
             } finally {
                 urlConnection.disconnect();
             }
@@ -44,16 +45,14 @@ class AsyncGitJSONDataForList extends AsyncTask<String, Void, JSONArray> {
     }
 
     @Override
-    protected void onPostExecute(JSONArray jsonArray) {
-        super.onPostExecute(jsonArray);
+    protected void onPostExecute(JSONObject jsonObject) {
+        super.onPostExecute(jsonObject);
         try {
             UserAdapter adapter = userAdapter.get();
-//            Log.i("JFL", result.getJSONArray("items").getJSONObject(0).getString("link"));
-//            JSONArray items = result.getJSONArray("items");
-            for (int i = 0; i < result.length(); i++) {
-                adapter.add(result.getJSONObject(i));
+            JSONArray temp = jsonObject.getJSONArray("items");
+            for (int i = 0; i < temp.length(); i++) {
+                adapter.add(temp.getJSONObject(i));
             }
-
             adapter.notifyDataSetChanged();
         } catch (JSONException e) {
             e.printStackTrace();
