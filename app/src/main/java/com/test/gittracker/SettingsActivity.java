@@ -50,11 +50,11 @@ public class SettingsActivity extends AppCompatActivity {
             findPreference("language").setOnPreferenceChangeListener((preference, newValue) -> {
                 Toast.makeText(getContext(), (CharSequence) newValue, Toast.LENGTH_SHORT).show();
 
-                Locale myLocale = new Locale((String) newValue); // Set Selected Locale
-                Locale.setDefault(myLocale); // set new locale as default
-                Configuration config = new Configuration(); // get Configuration
-                config.setLocale(myLocale); // set config locale as selected locale
-                getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics()); // Update the config
+                Locale myLocale = new Locale((String) newValue);
+                Locale.setDefault(myLocale);
+                Configuration config = new Configuration();
+                config.setLocale(myLocale);
+                requireActivity().getBaseContext().getResources().updateConfiguration(config, requireActivity().getBaseContext().getResources().getDisplayMetrics());
 
                 requireActivity().recreate();
                 return true;
