@@ -1,8 +1,8 @@
-<PreferenceScreen
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        app:title="Theme">
+        app:title="General">
 
         <SwitchPreferenceCompat
             app:key="darkTheme"
@@ -11,39 +11,29 @@
             app:summaryOn="Night mode activated"
             app:summaryOff="Light mode activated" />
 
-<!--        <SwitchPreferenceCompat-->
-<!--            app:key="theme"-->
-<!--            app:title="Dark theme"/>-->
-
-        <EditTextPreference
-            app:key="signature"
-            app:title="@string/signature_title"
-            app:useSimpleSummaryProvider="true"/>
-
         <ListPreference
-            app:key="reply"
-            app:title="@string/reply_title"
-            app:entries="@array/reply_entries"
-            app:entryValues="@array/reply_values"
-            app:defaultValue="reply"
-            app:useSimpleSummaryProvider="true"/>
-
+            app:key="language"
+            app:title="Language"
+            app:entries="@array/language_entries"
+            app:entryValues="@array/language_values"
+            app:defaultValue="English"
+            app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
 
     <PreferenceCategory
-        app:title="@string/sync_header">
+        app:title="Profile">
 
-        <SwitchPreferenceCompat
-            app:key="sync"
-            app:title="@string/sync_title"/>
+        <EditTextPreference
+            app:key="pseudo"
+            app:title="Pseudo"
+            app:useSimpleSummaryProvider="true"
+            android:positiveButtonText="Change"
+            android:negativeButtonText="Back"
+            android:persistent="true"/>
 
-        <SwitchPreferenceCompat
-            app:key="attachment"
-            app:title="@string/attachment_title"
-            app:summaryOn="@string/attachment_summary_on"
-            app:summaryOff="@string/attachment_summary_off"
-            app:dependency="sync"/>
-
+        <EditTextPreference
+            app:key="password"
+            app:title="Change password"
+            app:useSimpleSummaryProvider="false" />
     </PreferenceCategory>
-
 </PreferenceScreen>
