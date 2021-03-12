@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GitTracker</string>
+    <string name="messages_header">Messages</string>
+    <string name="pseudo">Pseudo</string>
+    <string name="password">Mot de passe</string>
+    <string name="General">General</string>
+    <string name="dark_theme">Thème sombre</string>
+    <string name="dark_mode_summary">Thème sombre</string>
+    <string name="light_mode_summary">Thème clair</string>
+    <string name="language">Langage</string>
+    <string name="profile">Profile</string>
+    <string name="change">Valider</string>
+    <string name="back_btn">Retour</string>
+    <string name="change_password">Changer de mot de passe</string>
+    <string name="stay_connected">Rester connecté</string>
+    <string name="login">Se connecter</string>
+    <string name="no_profile">Pas encore de profile ? En créer un</string>
+</resources>

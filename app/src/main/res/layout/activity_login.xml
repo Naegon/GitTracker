@@ -10,12 +10,12 @@
 
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/image_bycicle"
+        android:id="@+id/logo"
         android:layout_width="match_parent"
         android:layout_height="240dp"
         android:layout_marginVertical="@dimen/margin_vertical_double"
         android:tint="@color/white"
-        android:src="@drawable/ic_repository"
+        android:src="@drawable/ic_gittracker"
         app:layout_constraintTop_toTopOf="parent"/>
 
 
@@ -25,11 +25,11 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/margin_vertical_double"
 
-        android:hint="Pseudo"
+        android:hint="@string/pseudo"
         app:startIconDrawable="@drawable/ic_repository"
 
         style="@style/Field"
-        app:layout_constraintTop_toBottomOf="@id/image_bycicle" >
+        app:layout_constraintTop_toBottomOf="@id/logo" >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditPseudo"
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/margin_vertical_double"
 
-        android:hint="Password"
+        android:hint="@string/password"
         app:startIconDrawable="@drawable/ic_search"
         app:endIconMode="password_toggle"
 
@@ -66,7 +66,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_vertical_double"
-        android:text="Stay connected"
+        android:text="@string/stay_connected"
         android:textColor="@color/white"
         android:buttonTint="@color/white"
         app:layout_constraintTop_toBottomOf="@id/editTextPassword"/>
@@ -78,7 +78,7 @@
         android:backgroundTint="@color/purple_dark"
         android:shadowColor="@color/purple_dark"
         style="@style/Button"
-        android:text="Login"
+        android:text="@string/login"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxConnect" />
 
     <TextView
@@ -87,7 +87,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:textAlignment="center"
-        android:text="No profile yet? Register"
+        android:text="@string/no_profile"
         app:layout_constraintTop_toBottomOf="@id/btnLogin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

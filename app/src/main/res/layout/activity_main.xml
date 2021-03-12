@@ -24,12 +24,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
-            app:tabTextColor="@color/purple_light"
+            app:tabTextColor="?attr/colorOnPrimary"
             app:tabSelectedTextColor="@color/white"
-            app:tabIndicatorColor="@color/purple_light"
+            app:tabIndicatorColor="?attr/colorOnPrimary"
             app:tabMode="fixed"
             app:tabGravity="fill"
-            android:backgroundTint="@color/purple" />
+            android:backgroundTint="?attr/colorPrimary" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager

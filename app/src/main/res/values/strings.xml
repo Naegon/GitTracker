@@ -1,5 +1,23 @@
 <resources>
     <string name="app_name">GitTracker</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+
+    <!-- Login page -->
+    <string name="pseudo">Pseudo</string>
+    <string name="password">Password</string>
+    <string name="General">General</string>
+    <string name="dark_theme">Dark theme</string>
+    <string name="dark_mode_summary">Dark mode</string>
+    <string name="light_mode_summary">Light mode</string>
+    <string name="language">Language</string>
+    <string name="profile">Profile</string>
+    <string name="change">Change</string>
+    <string name="back_btn">Back</string>
+    <string name="change_password">Change password</string>
+    <string name="stay_connected">Stay connected</string>
+    <string name="login">Login</string>
+    <string name="no_profile">No profile yet? Register</string>
 </resources>

@@ -1,0 +1,39 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        app:title="@string/General">
+
+        <SwitchPreferenceCompat
+            app:key="darkTheme"
+            app:title="@string/dark_theme"
+            app:defaultValue="false"
+            app:summaryOn="@string/dark_mode_summary"
+            app:summaryOff="@string/light_mode_summary" />
+
+        <ListPreference
+            app:key="language"
+            app:title="@string/language"
+            app:entries="@array/language_entries"
+            app:entryValues="@array/language_values"
+            app:defaultValue="en"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/profile">
+
+        <EditTextPreference
+            app:key="pseudo"
+            app:title="@string/pseudo"
+            app:useSimpleSummaryProvider="true"
+            android:positiveButtonText="@string/change"
+            android:negativeButtonText="@string/back_btn"
+            android:persistent="true"/>
+
+        <EditTextPreference
+            app:key="password"
+            app:title="@string/change_password"
+            app:useSimpleSummaryProvider="false" />
+    </PreferenceCategory>
+</PreferenceScreen>
