@@ -22,8 +22,8 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/margin_vertical_double"
 
-            android:hint="@string/pseudo"
-            app:startIconDrawable="@drawable/ic_repository"
+            android:hint="Search for an user"
+            app:startIconDrawable="@drawable/ic_followers"
 
             style="@style/Field"
             app:layout_constraintTop_toBottomOf="@id/logo" >
@@ -42,16 +42,18 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
             <RadioButton
-                android:id="@+id/radio_button_1"
+                android:id="@+id/radio_User"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="User"/>
+                android:text="User"
+                android:checked="true" />
             <RadioButton
-                android:id="@+id/radio_button_2"
+                android:id="@+id/radio_Repo"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Repository"/>
         </RadioGroup>
+
     </LinearLayout>
 
     <!--This is the backdrop's content with a BottomSheetBehaviour applied to it-->
