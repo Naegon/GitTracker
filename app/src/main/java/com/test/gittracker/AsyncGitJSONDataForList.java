@@ -2,6 +2,7 @@ package com.test.gittracker;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,9 +20,11 @@ class AsyncGitJSONDataForList extends AsyncTask<String, Void, JSONObject> {
     private URL url;
     private JSONObject result;
     private final WeakReference<UserAdapter> userAdapter;
+    private final WeakReference<TextView> resultCount;
 
-    public AsyncGitJSONDataForList(WeakReference<UserAdapter> userAdapter) {
+    public AsyncGitJSONDataForList(WeakReference<UserAdapter> userAdapter, WeakReference<TextView> resultCount) {
         this.userAdapter = userAdapter;
+        this.resultCount = resultCount;
     }
 
     @Override
@@ -49,10 +52,13 @@ class AsyncGitJSONDataForList extends AsyncTask<String, Void, JSONObject> {
         super.onPostExecute(jsonObject);
         try {
             UserAdapter adapter = userAdapter.get();
+            int total_count = jsonObject.getInt("total_count");
+
             JSONArray temp = jsonObject.getJSONArray("items");
             for (int i = 0; i < temp.length(); i++) {
                 adapter.add(temp.getJSONObject(i));
             }
+            resultCount.get().setText("Showing " + temp.length() + " of " + total_count + " results");
             adapter.notifyDataSetChanged();
         } catch (JSONException e) {
             e.printStackTrace();
