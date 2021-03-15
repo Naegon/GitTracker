@@ -2,7 +2,6 @@ package com.test.gittracker;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -17,6 +16,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -51,16 +51,18 @@ public class SearchActivity extends AppCompatActivity {
         radioGroup.setOnCheckedChangeListener(switchSearchType);
     }
 
-    private final TextView.OnEditorActionListener search = new TextView.OnEditorActionListener() {
-        @Override
-        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-            target = textInputEditSearch.getEditableText().toString();
-            setView();
-            if (radioGroup.getCheckedRadioButtonId() == R.id.radio_User) {
-                searchForUser();
-            } else searchForRepo();
-            return true;
-        }
+    private void performSearch() {
+        target = textInputEditSearch.getEditableText().toString();
+        if (target.equals("")) return;
+        setView();
+        if (radioGroup.getCheckedRadioButtonId() == R.id.radio_User) {
+            searchForUser();
+        } else searchForRepo();
+    }
+
+    private final TextView.OnEditorActionListener search = (v, actionId, event) -> {
+        performSearch();
+        return true;
     };
 
     private final RadioGroup.OnCheckedChangeListener switchSearchType = new RadioGroup.OnCheckedChangeListener() {
@@ -69,6 +71,7 @@ public class SearchActivity extends AppCompatActivity {
             editTextSearch.setHint("Search for a" + ((checkedId == R.id.radio_User)?"n user":" repository"));
             editTextSearch.setStartIconDrawable((checkedId == R.id.radio_User)?R.drawable.ic_followers:R.drawable.ic_repository);
             filterIcone.setImageResource((checkedId == R.id.radio_User)?R.drawable.ic_followers:R.drawable.ic_repository);
+            performSearch();
         }
     };
 
@@ -104,21 +107,23 @@ public class SearchActivity extends AppCompatActivity {
         new Thread(() -> {
             URL url;
             try {
-                url = new URL("https://api.github.com/users/" + target + "/repos");
+                url = new URL("https://api.github.com/search/repositories?q=" + target + "&order=desc&per_page=15");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-//                String basicAuth = "Basic " + Base64.encodeToString(("Naegon:zFqi58Cmvw").getBytes(), Base64.NO_WRAP);
-//                urlConnection.setRequestProperty ("Authorization", basicAuth);
                 try {
                     InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                     String s = readStream(in);
                     Log.i("Git_API", s);
 
-                    JSONArray result = new JSONArray(s);
+                    JSONObject result = new JSONObject(s);
+                    JSONArray test = result.getJSONArray("items");
 
-                    for (int i = 0; i < result.length(); i++) {
-                        Log.i("Git_API", result.get(i).toString());
-                        repoAdapter.add(result.get(i));
+                    for (int i = 0; i < test.length(); i++) {
+                        Log.i("Git_API", test.getJSONObject(i).toString());
+                        repoAdapter.add(test.getJSONObject(i));
                     }
+
+                    int total_count = result.getInt("total_count");
+                    resultCount.setText("Showing " + test.length() + " of " + total_count + " results");
 
                     runOnUiThread(repoAdapter::notifyDataSetChanged);
 

@@ -1,7 +1,6 @@
 package com.test.gittracker;
 
 import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,7 +11,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.SearchView;
 import androidx.preference.PreferenceManager;
 import androidx.viewpager.widget.ViewPager;
 
@@ -41,18 +39,20 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(topAppBar);
         topAppBar.setOnMenuItemClickListener(item -> {
             int id = item.getItemId();
+            Intent intent;
             switch (id) {
                 case R.id.settings:
-                    Intent intent = new Intent(this, SearchActivity.class);
-                    startActivity(intent);
-                    return true;
+                    intent = new Intent(this, SettingsActivity.class);
+                    break;
                 case R.id.search:
-                    Log.i("UI", "Search");
-                    return true;
+                    intent = new Intent(this, SearchActivity.class);
+                    break;
                 default:
                     Log.i("UI", "Unknow button");
                     return false;
             }
+            startActivity(intent);
+            return true;
         });
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -86,15 +86,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.app_bar, menu);
-
-        // Associate searchable configuration with the SearchView
-        SearchManager searchManager =
-                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView =
-                (SearchView) menu.findItem(R.id.search).getActionView();
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(getComponentName()));
-
         return true;
     }
 
