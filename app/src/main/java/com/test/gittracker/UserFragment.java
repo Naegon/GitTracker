@@ -9,8 +9,6 @@ import android.widget.ListView;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 
-import java.lang.ref.WeakReference;
-
 public class UserFragment extends Fragment {
     private ListView listView;
     private UserAdapter userAdapter = new UserAdapter();
@@ -49,9 +47,12 @@ public class UserFragment extends Fragment {
         listView.setAdapter(userAdapter);
         ViewCompat.setNestedScrollingEnabled(listView, true);
 
-        AsyncGitJSONDataForList task = new AsyncGitJSONDataForList(new WeakReference<>(userAdapter));
-        String url = "https://api.github.com/users/BenRoecker/followers";
-        task.execute(url);
+        MainActivity mainActivity = (MainActivity)getActivity();
+        String target = mainActivity.getTarget();
+
+//        AsyncGitJSONDataForList task = new AsyncGitJSONDataForList(new WeakReference<>(userAdapter));
+//        String url = "https://api.github.com/search/users?q=" + target + "&order=desc&per_page=15";
+//        task.execute(url);
 
         return view;
     }

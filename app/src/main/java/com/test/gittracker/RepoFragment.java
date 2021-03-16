@@ -66,7 +66,6 @@ public class RepoFragment extends Fragment {
         new Thread(() -> {
             URL url;
             try {
-
                 url = new URL("https://api.github.com/users/" + target + "/repos");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 //                String basicAuth = "Basic " + Base64.encodeToString(("Naegon:zFqi58Cmvw").getBytes(), Base64.NO_WRAP);

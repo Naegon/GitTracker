@@ -4,8 +4,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -53,7 +53,10 @@ class RepoAdapter extends BaseAdapter {
             JSONObject repo = data.get(position);
             textViewAppName.setText(repo.getString("name"));
             textViewOwner.setText(repo.getJSONObject("owner").getString("login"));
-            textViewLanguage.setText(repo.getString("language"));
+
+            String language = repo.getString("language");
+            if (language.equals("null")) textViewLanguage.setVisibility(View.GONE);
+            else textViewLanguage.setText(language);
 
             String description = repo.getString("description");
             if (!description.equals("null")) textViewDesc.setText(description);
