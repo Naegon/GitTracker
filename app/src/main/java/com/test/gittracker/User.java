@@ -1,8 +1,13 @@
 package com.test.gittracker;
 
+import android.graphics.Bitmap;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.Response;
+import com.android.volley.toolbox.ImageRequest;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.imageview.ShapeableImageView;
 
@@ -22,7 +27,7 @@ class User {
     private final ShapeableImageView learnMore;
     private final MaterialButton btnFollow;
 
-    public User(View convertView) {
+    public User(View convertView, JSONObject data, ViewGroup parent) {
         textViewUsername = convertView.findViewById(R.id.text_view_username);
         textViewCompany = convertView.findViewById(R.id.text_view_company);
         textViewRepositories = convertView.findViewById(R.id.text_view_repositories);
@@ -32,18 +37,13 @@ class User {
         btnFollow = convertView.findViewById(R.id.btn_follow);
 
         btnFollow.setOnClickListener(follow);
-    }
 
-    private final View.OnClickListener follow = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            state = !state;
-            btnFollow.setText(state?R.string.follow:R.string.unfollow);
-        }
-    };
+        Response.Listener<Bitmap> rep_listener = avatar::setImageBitmap;
 
-    public void setWithJSON(JSONObject data) {
         try {
+            ImageRequest imageRequest = new ImageRequest(data.getString("avatar_url"), rep_listener, 0, 0, ImageView.ScaleType.CENTER_CROP, null, null);
+            MySingleton.getInstance(parent.getContext()).addToRequestQueue(imageRequest);
+
             textViewUsername.setText(data.getString("login"));
             textViewCompany.setText(data.getString("type"));
             textViewRepositories.setText(data.getString("login"));
@@ -53,31 +53,11 @@ class User {
         }
     }
 
-    public TextView getTextViewUsername() {
-        return textViewUsername;
-    }
-
-    public TextView getTextViewCompany() {
-        return textViewCompany;
-    }
-
-    public TextView getTextViewRepositories() {
-        return textViewRepositories;
-    }
-
-    public TextView getTextViewFollowers() {
-        return textViewFollowers;
-    }
-
-    public ShapeableImageView getAvatar() {
-        return avatar;
-    }
-
-    public ShapeableImageView getLearnMore() {
-        return learnMore;
-    }
-
-    public MaterialButton getBtnFollow() {
-        return btnFollow;
-    }
+    private final View.OnClickListener follow = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            state = !state;
+            btnFollow.setText(state?R.string.follow:R.string.unfollow);
+        }
+    };
 }
