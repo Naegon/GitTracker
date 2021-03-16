@@ -50,7 +50,7 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_username"
-                android:textSize="@dimen/title"
+                android:textSize="@dimen/text_big"
                 android:textStyle="bold"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -101,9 +101,7 @@
                 app:srcCompat="@drawable/ic_information"
                 app:tint="@color/purple"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                android:text="Learn more"/>
-
+                app:layout_constraintRight_toRightOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

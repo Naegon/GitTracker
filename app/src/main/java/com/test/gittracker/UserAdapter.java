@@ -57,8 +57,8 @@ class UserAdapter extends BaseAdapter {
         TextView textViewRepositories = convertView.findViewById(R.id.text_view_repositories);
         TextView textViewFollowers = convertView.findViewById(R.id.text_view_followers);
         ShapeableImageView avatar = convertView.findViewById(R.id.avatar);
-        ShapeableImageView LearnMore = convertView.findViewById(R.id.img_learn_more);
-        MaterialButton BtnFollow = convertView.findViewById(R.id.btn_follow);
+        ShapeableImageView learnMore = convertView.findViewById(R.id.img_learn_more);
+        MaterialButton btnFollow = convertView.findViewById(R.id.btn_follow);
 
         Response.Listener<Bitmap> rep_listener = avatar::setImageBitmap;
 
@@ -72,7 +72,13 @@ class UserAdapter extends BaseAdapter {
             textViewCompany.setText(user.getString("type"));
             textViewRepositories.setText(user.getString("login"));
             textViewFollowers.setText(user.getString("type"));
-
+//            btnFollow.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    state = !state;
+//                    btnFollow.setText(R.string.unfollow);
+//                }
+//            });
         } catch (JSONException e) {
             e.printStackTrace();
         }

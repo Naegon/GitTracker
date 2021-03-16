@@ -21,4 +21,5 @@
     <string name="search_user">Search for an user</string>
     <string name="follow">Follow</string>
     <string name="show_result">Showing %1$d of %2$d results</string>
+    <string name="unfollow">Unfollow</string>
 </resources>

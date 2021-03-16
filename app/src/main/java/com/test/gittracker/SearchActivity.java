@@ -1,8 +1,10 @@
 package com.test.gittracker;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioGroup;
@@ -51,6 +53,9 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void performSearch() {
+        InputMethodManager mgr = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.hideSoftInputFromWindow(textInputEditSearch.getWindowToken(), 0);
+
         target = textInputEditSearch.getEditableText().toString();
         if (target.equals("")) return;
         setView();
