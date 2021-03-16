@@ -21,8 +21,9 @@
     <string name="login">Login</string>
     <string name="no_profile">No profile yet? Register</string>
     <string name="nothin_to_show">Nothin to show here. Try making a research!</string>
-    <string name="no_item">0 items(s)</string>
+    <string name="no_item">No result</string>
     <string name="repository">Repository</string>
     <string name="user">User</string>
     <string name="search_user">Search for an user</string>
+    <string name="follow">Follow</string>
 </resources>

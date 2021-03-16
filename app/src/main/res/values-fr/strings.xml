@@ -16,4 +16,10 @@
     <string name="stay_connected">Rester connecté</string>
     <string name="login">Se connecter</string>
     <string name="no_profile">Pas encore de profile ? En créer un</string>
+    <string name="nothin_to_show">Il n\'y a rien à voir ici. Essaie de faire une recherche !</string>
+    <string name="no_item">Aucun résultat</string>
+    <string name="repository">Dépôt</string>
+    <string name="user">Utilisateur</string>
+    <string name="search_user">Rechercher un utilisateur</string>
+    <string name="follow">Suivre</string>
 </resources>
