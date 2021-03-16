@@ -1,11 +1,5 @@
 <resources>
     <string name="app_name">GitTracker</string>
-    <!-- TODO: Remove or change this placeholder text -->
-
-    <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-
-    <!-- Login page -->
     <string name="pseudo">Pseudo</string>
     <string name="password">Password</string>
     <string name="General">General</string>
@@ -26,4 +20,5 @@
     <string name="user">User</string>
     <string name="search_user">Search for an user</string>
     <string name="follow">Follow</string>
+    <string name="show_result">Showing %1$d of %2$d results</string>
 </resources>

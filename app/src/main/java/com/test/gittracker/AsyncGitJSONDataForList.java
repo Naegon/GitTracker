@@ -4,6 +4,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,10 +23,12 @@ class AsyncGitJSONDataForList extends AsyncTask<String, Void, JSONObject> {
     private JSONObject result;
     private final WeakReference<UserAdapter> userAdapter;
     private final WeakReference<TextView> resultCount;
+    private final AppCompatActivity activity;
 
-    public AsyncGitJSONDataForList(WeakReference<UserAdapter> userAdapter, WeakReference<TextView> resultCount) {
+    public AsyncGitJSONDataForList(WeakReference<UserAdapter> userAdapter, WeakReference<TextView> resultCount, AppCompatActivity activity) {
         this.userAdapter = userAdapter;
         this.resultCount = resultCount;
+        this.activity = activity;
     }
 
     @Override
@@ -58,7 +62,7 @@ class AsyncGitJSONDataForList extends AsyncTask<String, Void, JSONObject> {
             for (int i = 0; i < temp.length(); i++) {
                 adapter.add(temp.getJSONObject(i));
             }
-            resultCount.get().setText("Showing " + temp.length() + " of " + total_count + " results");
+            resultCount.get().setText(activity.getString(R.string.show_result, temp.length(), total_count));
             adapter.notifyDataSetChanged();
         } catch (JSONException e) {
             e.printStackTrace();

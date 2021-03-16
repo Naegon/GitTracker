@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">GitTracker</string>
-    <string name="messages_header">Messages</string>
     <string name="pseudo">Pseudo</string>
     <string name="password">Mot de passe</string>
     <string name="General">General</string>
@@ -22,4 +21,5 @@
     <string name="user">Utilisateur</string>
     <string name="search_user">Rechercher un utilisateur</string>
     <string name="follow">Suivre</string>
+    <string name="show_result">Affichage de %1$d résultats sur %2$d</string>
 </resources>

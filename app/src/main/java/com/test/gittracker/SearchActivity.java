@@ -28,13 +28,12 @@ import java.net.URL;
 
 public class SearchActivity extends AppCompatActivity {
     private String target;
-    private String searchFor = "user";
 
     private TextInputEditText textInputEditSearch;
     private TextInputLayout editTextSearch;
     private RadioGroup radioGroup;
     private TextView resultCount;
-    private ImageView filterIcone;
+    private ImageView filterIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +44,7 @@ public class SearchActivity extends AppCompatActivity {
         radioGroup = findViewById(R.id.radioGroup);
         editTextSearch = findViewById(R.id.editTextSearch);
         resultCount = findViewById(R.id.resultCount);
-        filterIcone = findViewById(R.id.filterIcon);
+        filterIcon = findViewById(R.id.filterIcon);
 
         textInputEditSearch.setOnEditorActionListener(search);
         radioGroup.setOnCheckedChangeListener(switchSearchType);
@@ -70,7 +69,7 @@ public class SearchActivity extends AppCompatActivity {
         public void onCheckedChanged(RadioGroup group, int checkedId) {
             editTextSearch.setHint("Search for a" + ((checkedId == R.id.radio_User)?"n user":" repository"));
             editTextSearch.setStartIconDrawable((checkedId == R.id.radio_User)?R.drawable.ic_followers:R.drawable.ic_repository);
-            filterIcone.setImageResource((checkedId == R.id.radio_User)?R.drawable.ic_followers:R.drawable.ic_repository);
+            filterIcon.setImageResource((checkedId == R.id.radio_User)?R.drawable.ic_followers:R.drawable.ic_repository);
             performSearch();
         }
     };
@@ -93,7 +92,7 @@ public class SearchActivity extends AppCompatActivity {
         listView.setAdapter(userAdapter);
         listView.setVisibility(View.VISIBLE);
 
-        AsyncGitJSONDataForList task = new AsyncGitJSONDataForList(new WeakReference<>(userAdapter), new WeakReference<>(resultCount));
+        AsyncGitJSONDataForList task = new AsyncGitJSONDataForList(new WeakReference<>(userAdapter), new WeakReference<>(resultCount), this);
         String url = "https://api.github.com/search/users?q=" + target + "&order=desc&per_page=15";
         task.execute(url);
     }
@@ -123,7 +122,7 @@ public class SearchActivity extends AppCompatActivity {
                     }
 
                     int total_count = result.getInt("total_count");
-                    resultCount.setText("Showing " + test.length() + " of " + total_count + " results");
+                    resultCount.setText(getString(R.string.show_result, test.length(), total_count));
 
                     runOnUiThread(repoAdapter::notifyDataSetChanged);
 
