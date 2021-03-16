@@ -21,15 +21,10 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/margin_vertical_double"
 
-            android:hint="Search for an user"
+            android:hint="@string/search_user"
             app:startIconDrawable="@drawable/ic_followers"
-            app:startIconTint="@color/white"
-            android:textColorHint="@color/white"
-            app:placeholderTextColor="@color/white"
-            app:helperTextTextColor="@color/white"
-            app:hintTextColor="@color/white"
 
-            style="@style/Field"
+            style="@style/FieldOnPurple"
             app:layout_constraintTop_toBottomOf="@id/logo" >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -52,14 +47,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textColor="@color/white"
-                android:text="User"
+                android:text="@string/user"
                 android:checked="true" />
             <RadioButton
                 android:id="@+id/radio_Repo"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Repository"/>
+                android:text="@string/repository"/>
         </RadioGroup>
     </LinearLayout>
 
@@ -79,7 +74,7 @@
             android:orientation="horizontal"
             android:clickable="true"
             android:background="@drawable/ic_list_header_background"
-            android:backgroundTint="?attr/colorPrimary"
+            android:backgroundTint="?attr/background"
             android:padding="@dimen/padding_horizontal"
             android:elevation="4dp">
 
@@ -88,7 +83,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="0 items(s)"/>
+                android:text="@string/no_item"/>
 
             <ImageView
                 android:id="@+id/filterIcon"
@@ -104,7 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingVertical="@dimen/margin_vertical_double"
-            android:background="?attr/colorPrimary" >
+            android:background="?attr/background" >
 
             <ListView
                 android:id="@+id/listview"
@@ -118,7 +113,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Nothin to show here. Try making a research!"
+                android:text="@string/nothin_to_show"
                 android:textSize="@dimen/title"
                 android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent" />
