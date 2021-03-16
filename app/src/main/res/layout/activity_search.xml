@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="?attr/colorPrimary"
+        android:background="?attr/colorSecondaryVariant"
         android:paddingHorizontal="@dimen/margin_horizontal_double"
         android:paddingVertical="@dimen/margin_vertical_double" >
 
@@ -23,6 +23,11 @@
 
             android:hint="Search for an user"
             app:startIconDrawable="@drawable/ic_followers"
+            app:startIconTint="@color/white"
+            android:textColorHint="@color/white"
+            app:placeholderTextColor="@color/white"
+            app:helperTextTextColor="@color/white"
+            app:hintTextColor="@color/white"
 
             style="@style/Field"
             app:layout_constraintTop_toBottomOf="@id/logo" >
@@ -31,6 +36,8 @@
                 android:id="@+id/textInputEditSearch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="?attr/colorSecondary"
+                android:textColor="@color/white"
                 android:inputType="textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -39,20 +46,21 @@
             android:checkedButton="@+id/radio_button_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
             <RadioButton
                 android:id="@+id/radio_User"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:textColor="@color/white"
                 android:text="User"
                 android:checked="true" />
             <RadioButton
                 android:id="@+id/radio_Repo"
+                android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Repository"/>
         </RadioGroup>
-
     </LinearLayout>
 
     <!--This is the backdrop's content with a BottomSheetBehaviour applied to it-->
@@ -62,7 +70,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:behavior_peekHeight="56dp"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior" >
 
         <!--This is the backdrop's header with a title and icon-->
         <LinearLayout
@@ -71,6 +79,7 @@
             android:orientation="horizontal"
             android:clickable="true"
             android:background="@drawable/ic_list_header_background"
+            android:backgroundTint="?attr/colorPrimary"
             android:padding="@dimen/padding_horizontal"
             android:elevation="4dp">
 
@@ -94,9 +103,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:paddingHorizontal="@dimen/margin_horizontal_double"
-            android:paddingVertical="@dimen/margin_vertical_double" >
+            android:paddingVertical="@dimen/margin_vertical_double"
+            android:background="?attr/colorPrimary" >
 
             <ListView
                 android:id="@+id/listview"
