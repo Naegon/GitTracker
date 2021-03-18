@@ -17,6 +17,8 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.Set;
+
 public class MainActivity extends AppCompatActivity {
     private String target = "Naegon";
 
@@ -26,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        Set<String> followedUser = sharedPreferences.getStringSet("followed_user", null);
+        if (followedUser != null) Log.i("SharedPreferences", followedUser.toString());
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         ViewPager viewPager = findViewById(R.id.view_pager);
