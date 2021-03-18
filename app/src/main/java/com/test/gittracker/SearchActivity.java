@@ -1,8 +1,10 @@
 package com.test.gittracker;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioGroup;
@@ -19,12 +21,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import static com.test.gittracker.Utils.readStream;
 
 public class SearchActivity extends AppCompatActivity {
     private String target;
@@ -51,6 +54,9 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void performSearch() {
+        InputMethodManager mgr = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.hideSoftInputFromWindow(textInputEditSearch.getWindowToken(), 0);
+
         target = textInputEditSearch.getEditableText().toString();
         if (target.equals("")) return;
         setView();
@@ -133,19 +139,5 @@ public class SearchActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }).start();
-    }
-
-    private String readStream(InputStream is) {
-        try {
-            ByteArrayOutputStream bo = new ByteArrayOutputStream();
-            int i = is.read();
-            while(i != -1) {
-                bo.write(i);
-                i = is.read();
-            }
-            return bo.toString();
-        } catch (IOException e) {
-            return "";
-        }
     }
 }

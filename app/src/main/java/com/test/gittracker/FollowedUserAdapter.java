@@ -9,10 +9,10 @@ import org.json.JSONObject;
 
 import java.util.Vector;
 
-class UserAdapter extends BaseAdapter {
+class FollowedUserAdapter extends BaseAdapter {
     private final Vector<JSONObject> data;
 
-    UserAdapter() {
+    FollowedUserAdapter() {
         this.data = new Vector<>();
     }
 
@@ -40,10 +40,10 @@ class UserAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-            convertView = inflater.inflate(R.layout.user, parent, false);
+            convertView = inflater.inflate(R.layout.followed_user, parent, false);
         }
 
-        new User(convertView, data.get(position), parent);
+        new FollowedUser(convertView, data.get(position), parent);
         return convertView;
     }
 }

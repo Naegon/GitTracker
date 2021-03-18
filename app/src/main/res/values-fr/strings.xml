@@ -22,4 +22,7 @@
     <string name="search_user">Rechercher un utilisateur</string>
     <string name="follow">Suivre</string>
     <string name="show_result">Affichage de %1$d résultats sur %2$d</string>
+    <string name="unfollow">Oublier</string>
+    <string name="repo_count">%1$s dépôts</string>
+    <string name="follower_count">%1$s abonné(e)s</string>
 </resources>

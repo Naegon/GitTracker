@@ -19,7 +19,7 @@ class FragmentAdapter extends FragmentPagerAdapter {
             case 0:
                 return RepoFragment.newInstance(0, "Repositories");
             case 1:
-                return UserFragment.newInstance(1, "Users");
+                return FollowedUserFragment.newInstance(1, "Users");
             default:
                 return null;
         }

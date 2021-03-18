@@ -14,8 +14,8 @@
     <dimen name="corner_radius">8dp</dimen>
 
     <!-- Text-->
-    <dimen name="title">26sp</dimen>
-    <dimen name="text_button">22sp</dimen>
-    <dimen name="text_big">18sp</dimen>
-    <dimen name="text">14sp</dimen>
+    <dimen name="title">24sp</dimen>
+    <dimen name="text_button">20sp</dimen>
+    <dimen name="text_big">16sp</dimen>
+    <dimen name="text">12sp</dimen>
 </resources>
