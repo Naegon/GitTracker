@@ -13,11 +13,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import static com.test.gittracker.Utils.readStream;
 
 public class RepoFragment extends Fragment {
     private ListView listView;
@@ -91,19 +92,5 @@ public class RepoFragment extends Fragment {
                 e.printStackTrace();
             }
         }).start();
-    }
-
-    private String readStream(InputStream is) {
-        try {
-            ByteArrayOutputStream bo = new ByteArrayOutputStream();
-            int i = is.read();
-            while(i != -1) {
-                bo.write(i);
-                i = is.read();
-            }
-            return bo.toString();
-        } catch (IOException e) {
-            return "";
-        }
     }
 }

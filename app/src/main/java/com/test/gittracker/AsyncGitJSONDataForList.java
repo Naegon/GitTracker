@@ -11,12 +11,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import static com.test.gittracker.Utils.readStream;
 
 class AsyncGitJSONDataForList extends AsyncTask<String, Void, JSONObject> {
     private URL url;
@@ -66,20 +67,6 @@ class AsyncGitJSONDataForList extends AsyncTask<String, Void, JSONObject> {
             adapter.notifyDataSetChanged();
         } catch (JSONException e) {
             e.printStackTrace();
-        }
-    }
-
-    private String readStream(InputStream is) {
-        try {
-            ByteArrayOutputStream bo = new ByteArrayOutputStream();
-            int i = is.read();
-            while(i != -1) {
-                bo.write(i);
-                i = is.read();
-            }
-            return bo.toString().replaceFirst("jsonFlickrFeed\\(", "");
-        } catch (IOException e) {
-            return "";
         }
     }
 }
