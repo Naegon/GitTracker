@@ -9,17 +9,17 @@ import android.widget.ListView;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 
-public class UserFragment extends Fragment {
+public class FollowedUserFragment extends Fragment {
     private ListView listView;
-    private UserAdapter userAdapter = new UserAdapter();
+    private FollowedUserAdapter followedUserAdapter = new FollowedUserAdapter();
     private String target = "Naegon";
 
-    public UserFragment() {
+    public FollowedUserFragment() {
         // Required empty public constructor
     }
 
-    public static UserFragment newInstance(int pageNumber, String title) {
-        UserFragment fragment = new UserFragment();
+    public static FollowedUserFragment newInstance(int pageNumber, String title) {
+        FollowedUserFragment fragment = new FollowedUserFragment();
         Bundle args = new Bundle();
         args.putInt("PageNumber", pageNumber);
         args.putString("Title", title);
@@ -44,7 +44,7 @@ public class UserFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_user, container, false);
 
         listView = view.findViewById(R.id.listview);
-        listView.setAdapter(userAdapter);
+        listView.setAdapter(followedUserAdapter);
         ViewCompat.setNestedScrollingEnabled(listView, true);
 
         MainActivity mainActivity = (MainActivity)getActivity();
