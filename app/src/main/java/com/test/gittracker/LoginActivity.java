@@ -1,6 +1,5 @@
 package com.test.gittracker;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -130,14 +129,12 @@ public class LoginActivity extends AppCompatActivity {
     private final View.OnClickListener showAlertDialog = v -> {
         AlertDialog alertDialog = new AlertDialog.Builder(LoginActivity.this).create();
         alertDialog.setTitle("How to get your token ?");
-        alertDialog.setMessage("You need to go to github and request a token there");
+        alertDialog.setMessage("In order to use the app, you'll need a personnal access token from Github. Just click on the bottom left button and follow the instructions!");
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Got it!", (dialog, which) -> dialog.dismiss());
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Go to Github", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/settings/tokens"));
-                startActivity(intent);
-                dialog.dismiss();
-            }
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Go to Github", (dialog, which) -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/settings/tokens"));
+            startActivity(intent);
+            dialog.dismiss();
         });
         alertDialog.show();
     };
