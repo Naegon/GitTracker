@@ -26,7 +26,7 @@ class AsyncFollowedUser extends AsyncTask<String, Void, JSONObject> {
     @Override
     protected JSONObject doInBackground(String... strings) {
         try {
-            url = new URL(strings[0]);
+            url = new URL(strings[0] + "?accept=application/vnd.github.v3+json");
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             try {
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());

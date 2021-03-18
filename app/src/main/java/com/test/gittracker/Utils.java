@@ -15,6 +15,7 @@ class Utils {
             }
             return bo.toString();
         } catch (IOException e) {
+            e.printStackTrace();
             return "";
         }
     }
