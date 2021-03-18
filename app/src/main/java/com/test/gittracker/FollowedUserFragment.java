@@ -1,6 +1,8 @@
 package com.test.gittracker;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +10,10 @@ import android.widget.ListView;
 
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
+
+import java.lang.ref.WeakReference;
+import java.util.Set;
 
 public class FollowedUserFragment extends Fragment {
     private ListView listView;
@@ -47,8 +53,18 @@ public class FollowedUserFragment extends Fragment {
         listView.setAdapter(followedUserAdapter);
         ViewCompat.setNestedScrollingEnabled(listView, true);
 
-        MainActivity mainActivity = (MainActivity)getActivity();
-        String target = mainActivity.getTarget();
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        Set<String> followedUser = sharedPreferences.getStringSet("followed_user", null);
+        if (followedUser == null) {
+            Log.i("GitTracker", "No followed user yet");
+            return view;
+        }
+
+        for (String string: followedUser) {
+            AsyncFollowedUser task = new AsyncFollowedUser(new WeakReference<>(followedUserAdapter));
+            task.execute(string);
+        }
 
 //        AsyncGitJSONDataForList task = new AsyncGitJSONDataForList(new WeakReference<>(userAdapter));
 //        String url = "https://api.github.com/search/users?q=" + target + "&order=desc&per_page=15";

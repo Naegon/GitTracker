@@ -22,4 +22,9 @@
     <string name="follow">Follow</string>
     <string name="show_result">Showing %1$d of %2$d results</string>
     <string name="unfollow">Unfollow</string>
+
+    <string name="repo_count">%1$s repositories</string>
+    <string name="follower_count">%1$s followers</string>
+    <string name="no_repo">No public repositories</string>
+    <string name="no_followers">No followers</string>
 </resources>

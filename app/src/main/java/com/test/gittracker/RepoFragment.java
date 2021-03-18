@@ -56,8 +56,7 @@ public class RepoFragment extends Fragment {
         listView.setAdapter(repoAdapter);
 //        ViewCompat.setNestedScrollingEnabled(listView, true);
 
-        MainActivity mainActivity = (MainActivity)getActivity();
-        String target = mainActivity.getTarget();
+        String target = "Naegon";
         Refresh(target);
 
         return view;

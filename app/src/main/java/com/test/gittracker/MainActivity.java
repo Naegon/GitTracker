@@ -1,13 +1,11 @@
 package com.test.gittracker;
 
-import android.app.SearchManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -17,10 +15,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.tabs.TabLayout;
 
-import java.util.Set;
-
 public class MainActivity extends AppCompatActivity {
-    private String target = "Naegon";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +23,6 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        Set<String> followedUser = sharedPreferences.getStringSet("followed_user", null);
-        if (followedUser != null) Log.i("SharedPreferences", followedUser.toString());
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         ViewPager viewPager = findViewById(R.id.view_pager);
@@ -62,30 +53,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            public void onPageSelected(int position) { }
 
-            // This method will be invoked when a new page becomes selected.
             @Override
-            public void onPageSelected(int position) {
-                Toast.makeText(MainActivity.this,
-                        "Selected page position: " + position, Toast.LENGTH_SHORT).show();
-            }
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
 
-            // This method will be invoked when the current page is scrolled
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                // Code goes here
-            }
-
-            // Called when the scroll state changes:
-            // SCROLL_STATE_IDLE, SCROLL_STATE_DRAGGING, SCROLL_STATE_SETTLING
-            @Override
-            public void onPageScrollStateChanged(int state) {
-                // Code goes here
-            }
+            public void onPageScrollStateChanged(int state) { }
         });
-
-        Log.i("Search", "Working");
-        handleIntent(getIntent());
     }
 
     @Override
@@ -93,26 +68,6 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.app_bar, menu);
         return true;
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        Log.i("Search", "Intent called");
-        handleIntent(intent);
-    }
-
-    private void handleIntent(Intent intent) {
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            Toast.makeText(this, "Searching for " + query, Toast.LENGTH_LONG).show();
-            Log.i("Search", "Search action on " + query);
-            target = query;
-        }
-    }
-
-    public String getTarget() {
-        return target;
     }
 
     public void loadSettings() {
