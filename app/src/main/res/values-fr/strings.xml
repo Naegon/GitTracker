@@ -25,4 +25,8 @@
     <string name="unfollow">Oublier</string>
     <string name="repo_count">%1$s dépôts</string>
     <string name="follower_count">%1$s abonné(e)s</string>
+    <string name="no_repo">Aucun dépôt public</string>
+    <string name="no_followers">Aucun abonné</string>
+    <string name="token">Jeton</string>
+    <string name="how_token">Comment obtenir un jeton?</string>
 </resources>

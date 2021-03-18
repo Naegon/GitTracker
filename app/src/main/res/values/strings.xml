@@ -27,4 +27,6 @@
     <string name="follower_count">%1$s followers</string>
     <string name="no_repo">No public repositories</string>
     <string name="no_followers">No followers</string>
+    <string name="token">Token</string>
+    <string name="how_token">How to get a token?</string>
 </resources>
