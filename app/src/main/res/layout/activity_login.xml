@@ -29,47 +29,58 @@
         app:startIconDrawable="@drawable/ic_repository"
 
         style="@style/Field"
-        app:layout_constraintTop_toBottomOf="@id/logo" >
+        app:layout_constraintTop_toBottomOf="@id/logo">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditPseudo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/editTextPassword"
+        android:id="@+id/editTextToken"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/margin_vertical_double"
 
-        android:hint="@string/password"
-        app:startIconDrawable="@drawable/ic_search"
+        android:hint="@string/token"
+        app:startIconDrawable="@drawable/ic_tokens"
         app:endIconMode="password_toggle"
 
         style="@style/Field"
         app:layout_constraintTop_toBottomOf="@id/editTextPseudo" >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textInputEditPassword"
+            android:id="@+id/textInputEditToken"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <CheckBox
-        android:id="@+id/checkBoxConnect"
-        android:layout_width="match_parent"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textViewToken"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_vertical_double"
-        android:text="@string/stay_connected"
+        android:text="@string/how_token"
+        android:textStyle="italic"
         android:textColor="@color/white"
-        android:buttonTint="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/editTextPassword"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextToken" />
+
+
+<!--    <CheckBox-->
+<!--        android:id="@+id/checkBoxConnect"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="@dimen/margin_vertical_double"-->
+<!--        android:text="@string/stay_connected"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:buttonTint="@color/white"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/editTextToken"/>-->
 
     <Button
         android:id="@+id/btnLogin"
@@ -77,17 +88,8 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/purple_dark"
         android:shadowColor="@color/purple_dark"
+        android:layout_marginBottom="@dimen/margin_vertical_double"
         style="@style/Button"
         android:text="@string/login"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxConnect" />
-
-    <TextView
-        android:id="@+id/textViewRegister"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textAlignment="center"
-        android:text="@string/no_profile"
-        app:layout_constraintTop_toBottomOf="@id/btnLogin" />
-
+        app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

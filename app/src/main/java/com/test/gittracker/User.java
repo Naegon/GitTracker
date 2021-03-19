@@ -1,93 +1,98 @@
 package com.test.gittracker;
 
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import androidx.preference.PreferenceManager;
-
-import com.android.volley.Response;
-import com.android.volley.toolbox.ImageRequest;
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.imageview.ShapeableImageView;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashSet;
-import java.util.Set;
+class User implements Parcelable {
+    private String login;
+    private String avatar_url;
+    private Bitmap avatar;
+    private String type;
+    private int public_repos;
+    private int total_private_repos;
+    private int followers;
 
-class User {
-    private boolean followed = false;
-
-    private final TextView textViewUsername;
-    private final ShapeableImageView avatar;
-    private final TextView learnMore;
-    private final MaterialButton btnFollow;
-    private final View convertView;
-    private String url = "";
-
-
-    public User(View convertView, JSONObject data, ViewGroup parent) {
-        this.convertView = convertView;
-        textViewUsername = convertView.findViewById(R.id.text_view_username);
-        avatar = convertView.findViewById(R.id.avatar);
-        learnMore = convertView.findViewById(R.id.text_view_learn_more);
-        btnFollow = convertView.findViewById(R.id.btn_follow);
-
-        Response.Listener<Bitmap> rep_listener = avatar::setImageBitmap;
-
+    public User(JSONObject data) {
         try {
-            url = data.getString("url");
-
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(convertView.getContext());
-            Set<String> followedUser = sharedPreferences.getStringSet("followed_user", null);
-            if (followedUser != null && followedUser.contains(url)) {
-                Log.i("Followed", "Contains");
-                btnFollow.setText(R.string.unfollow);
-                followed = true;
-            }
-
-            btnFollow.setOnClickListener(follow);
-
-            ImageRequest imageRequest = new ImageRequest(data.getString("avatar_url"), rep_listener, 0, 0, ImageView.ScaleType.CENTER_CROP, null, null);
-            MySingleton.getInstance(parent.getContext()).addToRequestQueue(imageRequest);
-
-            textViewUsername.setText(data.getString("login"));
+            this.login = data.getString("login");
+            this.avatar_url = data.getString("avatar_url");
+            this.avatar = null;
+            this.type = data.getString("type");
+            this.public_repos = Integer.parseInt(data.getString("public_repos"));
+            this.total_private_repos = Integer.parseInt(data.getString("total_private_repos"));
+            this.followers = Integer.parseInt(data.getString("followers"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        convertView.getContext();
     }
 
-    private final View.OnClickListener follow = new View.OnClickListener() {
+    public String getLogin() {
+        return login;
+    }
+
+    protected User(Parcel in) {
+        login = in.readString();
+        avatar_url = in.readString();
+        avatar = in.readParcelable(Bitmap.class.getClassLoader());
+        type = in.readString();
+        public_repos = in.readInt();
+        total_private_repos = in.readInt();
+        followers = in.readInt();
+    }
+
+    public String getAvatar_url() {
+        return avatar_url;
+    }
+
+    public Bitmap getAvatar() {
+        return avatar;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getPublic_repos() {
+        return public_repos;
+    }
+
+    public int getTotal_private_repos() {
+        return total_private_repos;
+    }
+
+    public int getFollowers() {
+        return followers;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(login);
+        dest.writeString(avatar_url);
+        dest.writeParcelable(avatar, flags);
+        dest.writeString(type);
+        dest.writeInt(public_repos);
+        dest.writeInt(total_private_repos);
+        dest.writeInt(followers);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
         @Override
-        public void onClick(View v) {
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(convertView.getContext());
-            Set<String> followedUser = sharedPreferences.getStringSet("followed_user", null);
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
 
-            if (!followed) {
-                Log.i("Followed", "Not followed");
-                if (followedUser == null) followedUser = new HashSet<>();
-                followedUser.add(url);
-            }
-            else {
-                Log.i("Followed", "Followed");
-                followedUser.remove(url);
-            }
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putStringSet("followed_user", followedUser);
-            editor.apply();
-
-            Log.i("Followed", "Switching state");
-            followed = !followed;
-            Log.i("Followed", "Setting text");
-            btnFollow.setText(followed?R.string.unfollow:R.string.follow);
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
         }
     };
 }

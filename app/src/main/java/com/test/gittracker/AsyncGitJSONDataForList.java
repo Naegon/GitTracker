@@ -61,7 +61,7 @@ class AsyncGitJSONDataForList extends AsyncTask<String, Void, JSONObject> {
 
             JSONArray temp = jsonObject.getJSONArray("items");
             for (int i = 0; i < temp.length(); i++) {
-                adapter.add(temp.getJSONObject(i));
+                adapter.add(new User(temp.getJSONObject(i)));
             }
             resultCount.get().setText(activity.getString(R.string.show_result, temp.length(), total_count));
             adapter.notifyDataSetChanged();

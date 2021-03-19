@@ -5,30 +5,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import org.json.JSONObject;
-
 import java.util.Vector;
 
-class FollowedUserAdapter extends BaseAdapter {
-    private final Vector<JSONObject> data;
+class RepositoryAdapter extends BaseAdapter {
+    private final Vector<Repository> repositories;
 
-    FollowedUserAdapter() {
-        this.data = new Vector<>();
+    public RepositoryAdapter() {
+        repositories = new Vector<>();
     }
 
-    public void add(Object data) {
-        this.data.add((JSONObject)data);
+    public void add(Repository repository) {
+        this.repositories.add(repository);
     }
-
 
     @Override
     public int getCount() {
-        return data.size();
+        return repositories.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return data.get(position);
+        return repositories.get(position);
     }
 
     @Override
@@ -40,10 +37,10 @@ class FollowedUserAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-            convertView = inflater.inflate(R.layout.followed_user, parent, false);
+            convertView = inflater.inflate(R.layout.repository, parent, false);
         }
 
-        new FollowedUser(convertView, data.get(position), parent);
+        new RepositoryComponent(convertView, repositories.get(position));
         return convertView;
     }
 }

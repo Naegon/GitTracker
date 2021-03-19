@@ -2,7 +2,6 @@ package com.test.gittracker;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,19 +12,15 @@ import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
 import java.lang.ref.WeakReference;
-import java.util.Set;
 
-public class FollowedUserFragment extends Fragment {
+public class UserFragment extends Fragment {
     private ListView listView;
-    private FollowedUserAdapter followedUserAdapter = new FollowedUserAdapter();
-    private String target = "Naegon";
+    private UserAdapter UserAdapter = new UserAdapter();
 
-    public FollowedUserFragment() {
-        // Required empty public constructor
-    }
+    public UserFragment() { }
 
-    public static FollowedUserFragment newInstance(int pageNumber, String title) {
-        FollowedUserFragment fragment = new FollowedUserFragment();
+    public static UserFragment newInstance(int pageNumber, String title) {
+        UserFragment fragment = new UserFragment();
         Bundle args = new Bundle();
         args.putInt("PageNumber", pageNumber);
         args.putString("Title", title);
@@ -37,9 +32,6 @@ public class FollowedUserFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            return;
-        }
     }
 
     @Override
@@ -50,25 +42,15 @@ public class FollowedUserFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_user, container, false);
 
         listView = view.findViewById(R.id.listview);
-        listView.setAdapter(followedUserAdapter);
+        listView.setAdapter(UserAdapter);
         ViewCompat.setNestedScrollingEnabled(listView, true);
 
-
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        Set<String> followedUser = sharedPreferences.getStringSet("followed_user", null);
-        if (followedUser == null) {
-            Log.i("GitTracker", "No followed user yet");
-            return view;
-        }
+        String login = sharedPreferences.getString("login", null);
+        String token = sharedPreferences.getString("token", null);
 
-        for (String string: followedUser) {
-            AsyncFollowedUser task = new AsyncFollowedUser(new WeakReference<>(followedUserAdapter));
-            task.execute(string);
-        }
-
-//        AsyncGitJSONDataForList task = new AsyncGitJSONDataForList(new WeakReference<>(userAdapter));
-//        String url = "https://api.github.com/search/users?q=" + target + "&order=desc&per_page=15";
-//        task.execute(url);
+        UserAsyncTask task = new UserAsyncTask(new WeakReference<>(UserAdapter), login, token);
+        task.execute();
 
         return view;
     }

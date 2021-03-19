@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -16,12 +17,18 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         loadSettings();
-
         super.onCreate(savedInstanceState);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        if (sharedPreferences.getString("login", null) == null) {
+            startActivity(new Intent(this, LoginActivity.class));
+            return;
+        }
+
         setContentView(R.layout.activity_main);
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);
@@ -61,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageScrollStateChanged(int state) { }
         });
+
+        Toast.makeText(this, "Welcome back " + sharedPreferences.getString("login", null), Toast.LENGTH_LONG).show();
     }
 
     @Override
