@@ -5,12 +5,12 @@ import org.json.JSONObject;
 
 class Repository {
     private String name;
-    private UserClass owner;
+    private User owner;
     private String description;
     private String language;
     private boolean isPrivate;
 
-    public Repository(String name, UserClass owner, String avatar_url, String description, String language, boolean isPrivate) {
+    public Repository(String name, User owner, String avatar_url, String description, String language, boolean isPrivate) {
         this.name = name;
         this.owner = owner;
         this.description = description;
@@ -23,7 +23,7 @@ class Repository {
             this.name = data.getString("name");
             this.description = data.getString("description");
             this.language = data.getString("language");
-            this.owner = new UserClass(data.getJSONObject("owner"));
+            this.owner = new User(data.getJSONObject("owner"));
             this.isPrivate = data.getString("private").equals("true");
         } catch (JSONException e) {
             e.printStackTrace();

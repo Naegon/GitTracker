@@ -23,16 +23,16 @@ import java.net.URL;
 
 import static com.test.gittracker.Utils.readStream;
 
-public class RepoFragment extends Fragment {
+public class RepositoryFragment extends Fragment {
     private ListView listView;
-    private RepoAdapter repoAdapter = new RepoAdapter();
+    private RepositoryAdapter repositoryAdapter = new RepositoryAdapter();
 
-    public RepoFragment() {
+    public RepositoryFragment() {
         // Required empty public constructor
     }
 
-    public static RepoFragment newInstance(int pageNumber, String title) {
-        RepoFragment fragment = new RepoFragment();
+    public static RepositoryFragment newInstance(int pageNumber, String title) {
+        RepositoryFragment fragment = new RepositoryFragment();
         Bundle args = new Bundle();
         args.putInt("PageNumber", pageNumber);
         args.putString("Title", title);
@@ -53,7 +53,7 @@ public class RepoFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_repo, container, false);
 
         listView = view.findViewById(R.id.listview);
-        listView.setAdapter(repoAdapter);
+        listView.setAdapter(repositoryAdapter);
 //        ViewCompat.setNestedScrollingEnabled(listView, true);
 
         Refresh();
@@ -85,10 +85,10 @@ public class RepoFragment extends Fragment {
 
                     for (int i = 0; i < result.length(); i++) {
                         Log.i("Git_API", result.get(i).toString());
-                        repoAdapter.add(new Repository(result.getJSONObject(i)));
+                        repositoryAdapter.add(new Repository(result.getJSONObject(i)));
                     }
 
-                    getActivity().runOnUiThread(() -> repoAdapter.notifyDataSetChanged());
+                    getActivity().runOnUiThread(() -> repositoryAdapter.notifyDataSetChanged());
 
                 } finally {
                     urlConnection.disconnect();

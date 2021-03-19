@@ -104,9 +104,9 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void searchForRepo() {
-        RepoAdapter repoAdapter = new RepoAdapter();
+        RepositoryAdapter repositoryAdapter = new RepositoryAdapter();
         ListView listView = findViewById(R.id.listview);
-        listView.setAdapter(repoAdapter);
+        listView.setAdapter(repositoryAdapter);
         listView.setVisibility(View.VISIBLE);
 
         new Thread(() -> {
@@ -130,7 +130,7 @@ public class SearchActivity extends AppCompatActivity {
                     int total_count = result.getInt("total_count");
                     resultCount.setText(getString(R.string.show_result, test.length(), total_count));
 
-                    runOnUiThread(repoAdapter::notifyDataSetChanged);
+                    runOnUiThread(repositoryAdapter::notifyDataSetChanged);
 
                 } finally {
                     urlConnection.disconnect();

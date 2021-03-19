@@ -10,10 +10,10 @@ import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.Vector;
 
-class RepoAdapter extends BaseAdapter {
+class RepositoryAdapter extends BaseAdapter {
     private final Vector<Repository> repositories;
 
-    public RepoAdapter() {
+    public RepositoryAdapter() {
         repositories = new Vector<>();
     }
 

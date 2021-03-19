@@ -17,7 +17,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
-    private UserClass loggedUser;
+    private User loggedUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public UserClass getLoggedUser() {
+    public User getLoggedUser() {
         return loggedUser;
     }
 }

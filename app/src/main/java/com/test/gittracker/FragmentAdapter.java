@@ -17,7 +17,7 @@ class FragmentAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return RepoFragment.newInstance(0, "Repositories");
+                return RepositoryFragment.newInstance(0, "Repositories");
             case 1:
                 return FollowedUserFragment.newInstance(1, "Users");
             default:

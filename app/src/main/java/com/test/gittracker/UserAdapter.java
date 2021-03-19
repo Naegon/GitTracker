@@ -43,7 +43,7 @@ class UserAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.user, parent, false);
         }
 
-        new User(convertView, data.get(position), parent);
+        new UserComponent(convertView, data.get(position), parent);
         return convertView;
     }
 }
