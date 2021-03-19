@@ -17,8 +17,6 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
-    private User loggedUser;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         loadSettings();
@@ -90,9 +88,5 @@ public class MainActivity extends AppCompatActivity {
         else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
-    }
-
-    public User getLoggedUser() {
-        return loggedUser;
     }
 }

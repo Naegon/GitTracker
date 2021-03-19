@@ -44,6 +44,30 @@ class User implements Parcelable {
         followers = in.readInt();
     }
 
+    public String getAvatar_url() {
+        return avatar_url;
+    }
+
+    public Bitmap getAvatar() {
+        return avatar;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getPublic_repos() {
+        return public_repos;
+    }
+
+    public int getTotal_private_repos() {
+        return total_private_repos;
+    }
+
+    public int getFollowers() {
+        return followers;
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(login);

@@ -5,30 +5,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import org.json.JSONObject;
-
 import java.util.Vector;
 
 class UserAdapter extends BaseAdapter {
-    private final Vector<JSONObject> data;
+    private final Vector<User> users;
 
     UserAdapter() {
-        this.data = new Vector<>();
+        this.users = new Vector<>();
     }
 
-    public void add(Object data) {
-        this.data.add((JSONObject)data);
+    public void add(User user) {
+        this.users.add(user);
     }
-
 
     @Override
     public int getCount() {
-        return data.size();
+        return users.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return data.get(position);
+        return users.get(position);
     }
 
     @Override
@@ -42,8 +39,7 @@ class UserAdapter extends BaseAdapter {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
             convertView = inflater.inflate(R.layout.user, parent, false);
         }
-
-        new UserComponent(convertView, data.get(position), parent);
+        new UserComponent(convertView, users.get(position), parent);
         return convertView;
     }
 }

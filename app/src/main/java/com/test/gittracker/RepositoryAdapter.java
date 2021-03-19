@@ -4,9 +4,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
-
-import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.Vector;
 
@@ -43,30 +40,7 @@ class RepositoryAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.repository, parent, false);
         }
 
-        TextView textViewAppName = convertView.findViewById(R.id.text_view_app_name);
-        TextView textViewOwner = convertView.findViewById(R.id.text_view_owner);
-        TextView textViewDesc = convertView.findViewById(R.id.text_view_description);
-        TextView textViewLanguage = convertView.findViewById(R.id.text_view_language);
-
-        Repository repo = repositories.get(position);
-        textViewAppName.setText(repo.getName());
-        textViewOwner.setText(repo.getOwnerLogin());
-
-        String language = repo.getLanguage();
-        if (language.equals("null")) textViewLanguage.setVisibility(View.GONE);
-        else textViewLanguage.setText(language);
-
-        String description = repo.getDescription();
-        if (!description.equals("null")) textViewDesc.setText(description);
-        else {
-            textViewDesc.setVisibility(View.GONE);
-        }
-
-        if (repo.isPrivate()) {
-            ShapeableImageView imgPublic = convertView.findViewById(R.id.imgPublic);
-            imgPublic.setImageResource(R.drawable.ic_padlock);
-        }
-
+        new RepositoryComponent(convertView, repositories.get(position));
         return convertView;
     }
 }
