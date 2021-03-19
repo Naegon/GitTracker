@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
@@ -36,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputLayout editTextToken;
     private TextView textViewToken;
     private Button btnLogin;
+    private Handler mHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +58,13 @@ public class LoginActivity extends AppCompatActivity {
 
         btnLogin = findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(login);
+
+        mHandler = new Handler(Looper.getMainLooper()) {
+            @Override
+            public void handleMessage(Message message) {
+                Toast.makeText(getApplicationContext(), "Failed authentification", Toast.LENGTH_LONG).show();
+            }
+        };
     }
 
     private final View.OnClickListener login = new View.OnClickListener() {
@@ -65,11 +76,8 @@ public class LoginActivity extends AppCompatActivity {
             editTextPseudo.setErrorEnabled(pseudo.equals(""));
             editTextToken.setErrorEnabled(password.equals(""));
 
-//            String username = editTextPseudo.getEditText().toString();
-//            String token = editTextToken.getEditText().toString();
-
-            String username = "Naegon";
-            String token = "38b79f839e6258ba8fcff68e6325d193de370cac";
+            String username = editTextPseudo.getEditText().getText().toString();
+            String token = editTextToken.getEditText().getText().toString();
 
             new Thread(() -> {
                 URL url;
@@ -77,14 +85,15 @@ public class LoginActivity extends AppCompatActivity {
                     url = new URL("https://api.github.com/user");
                     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                     String basicAuth = "Basic " + Base64.encodeToString((username + ":" + token).getBytes(), Base64.NO_WRAP);
-                    urlConnection.setRequestProperty ("Authorization", basicAuth);
+                    urlConnection.setRequestProperty("Authorization", basicAuth);
                     try {
                         InputStream in;
-
                         try {
                             in = new BufferedInputStream(urlConnection.getInputStream());
                         } catch (FileNotFoundException e) {
-                            Toast.makeText(getApplicationContext(), "Failed authentification", Toast.LENGTH_LONG).show();
+                            Message message = mHandler.obtainMessage();
+                            message.sendToTarget();
+                            e.printStackTrace();
                             return;
                         }
 
@@ -93,28 +102,27 @@ public class LoginActivity extends AppCompatActivity {
                         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                        UserClass loggedUser;
                         try {
                             JSONObject result = new JSONObject(s);
+
+//                            loggedUser = new UserClass(
+//                                    result.getString("login"),
+//                                    result.getString("avatar_url"),
+//                                    result.getString("type"),
+//                                    result.getString("company"),
+//                                    Integer.parseInt(result.getString("public_repos")),
+//                                    Integer.parseInt(result.getString("total_private_repos")),
+//                                    Integer.parseInt(result.getString("followers")));
+
                             editor.putString("login", username);
                             editor.putString("token", token);
                             editor.apply();
-
-                            loggedUser = new UserClass(
-                                    result.getString("login"),
-                                    result.getString("avatar_url"),
-                                    result.getString("type"),
-                                    result.getString("company"),
-                                    Integer.parseInt(result.getString("public_repos")),
-                                    Integer.parseInt(result.getString("total_private_repos")),
-                                    Integer.parseInt(result.getString("followers")));
                         } catch (JSONException e) {
                             e.printStackTrace();
                             return;
                         }
 
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        intent.putExtra("logged_user", loggedUser);
                         startActivity(intent);
                     } finally {
                         urlConnection.disconnect();
