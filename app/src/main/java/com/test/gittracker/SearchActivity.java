@@ -124,7 +124,7 @@ public class SearchActivity extends AppCompatActivity {
 
                     for (int i = 0; i < test.length(); i++) {
                         Log.i("Git_API", test.getJSONObject(i).toString());
-//                        repoAdapter.add(test.getJSONObject(i));
+                        repositoryAdapter.add(new Repository(test.getJSONObject(i)));
                     }
 
                     int total_count = result.getInt("total_count");
