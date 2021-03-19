@@ -1,6 +1,8 @@
 package com.test.gittracker;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,24 +56,30 @@ public class RepoFragment extends Fragment {
         listView.setAdapter(repoAdapter);
 //        ViewCompat.setNestedScrollingEnabled(listView, true);
 
-        String target = "Naegon";
-        Refresh(target);
-
+        Refresh();
         return view;
     }
 
-    private void Refresh(String target) {
+    private void Refresh() {
         new Thread(() -> {
             URL url;
             try {
-                url = new URL("https://api.github.com/users/" + target + "/repos");
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+                String login = sharedPreferences.getString("login", null);
+                String token = sharedPreferences.getString("token", null);
+
+                if (login == null || token == null) {
+                    Log.i("Error", "login or token missing in sharedPreferences");
+                    return;
+                }
+
+                url = new URL("https://api.github.com/user/repos");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-//                String basicAuth = "Basic " + Base64.encodeToString(("Naegon:zFqi58Cmvw").getBytes(), Base64.NO_WRAP);
-//                urlConnection.setRequestProperty ("Authorization", basicAuth);
+                String basicAuth = "Basic " + Base64.encodeToString((login + ":" + token).getBytes(), Base64.NO_WRAP);
+                urlConnection.setRequestProperty("Authorization", basicAuth);
                 try {
                     InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                     String s = readStream(in);
-                    Log.i("Git_API", s);
 
                     JSONArray result = new JSONArray(s);
 

@@ -25,6 +25,10 @@ class UserClass implements Parcelable {
         this.followers = followers;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
     protected UserClass(Parcel in) {
         login = in.readString();
         avatar_url = in.readString();

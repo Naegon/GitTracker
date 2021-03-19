@@ -91,4 +91,8 @@ public class MainActivity extends AppCompatActivity {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
     }
+
+    public UserClass getLoggedUser() {
+        return loggedUser;
+    }
 }
