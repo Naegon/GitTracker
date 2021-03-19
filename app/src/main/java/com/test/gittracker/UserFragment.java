@@ -54,43 +54,4 @@ public class UserFragment extends Fragment {
 
         return view;
     }
-
-//    private void get() {
-//        new Thread(() -> {
-//            URL url;
-//            try {
-//                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-//                String login = sharedPreferences.getString("login", null);
-//                String token = sharedPreferences.getString("token", null);
-//
-//                if (login == null || token == null) {
-//                    Log.i("Error", "login or token missing in sharedPreferences");
-//                    return;
-//                }
-//
-//                url = new URL("https://api.github.com/user/repos");
-//                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-//                String basicAuth = "Basic " + Base64.encodeToString((login + ":" + token).getBytes(), Base64.NO_WRAP);
-//                urlConnection.setRequestProperty("Authorization", basicAuth);
-//                try {
-//                    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-//                    String s = readStream(in);
-//
-//                    JSONArray result = new JSONArray(s);
-//
-//                    for (int i = 0; i < result.length(); i++) {
-//                        Log.i("Git_API", result.get(i).toString());
-//                        repositoryAdapter.add(new Repository(result.getJSONObject(i)));
-//                    }
-//
-//                    getActivity().runOnUiThread(() -> repositoryAdapter.notifyDataSetChanged());
-//
-//                } finally {
-//                    urlConnection.disconnect();
-//                }
-//            } catch (IOException | JSONException e) {
-//                e.printStackTrace();
-//            }
-//        }).start();
-//    }
 }

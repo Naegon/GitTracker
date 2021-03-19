@@ -31,7 +31,7 @@ class UserAsyncTask extends AsyncTask<String, Void, JSONArray> {
     @Override
     protected JSONArray doInBackground(String... strings) {
         try {
-            url = new URL("https://api.github.com/user/followers?accept=application/vnd.github.v3+json");
+            url = new URL("https://api.github.com/user/following?accept=application/vnd.github.v3+json");
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             String basicAuth = "Basic " + Base64.encodeToString((login + ":" + token).getBytes(), Base64.NO_WRAP);
             urlConnection.setRequestProperty("Authorization", basicAuth);
