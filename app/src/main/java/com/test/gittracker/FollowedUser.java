@@ -17,7 +17,6 @@ class FollowedUser {
 
     public FollowedUser(View convertView, JSONObject data, ViewGroup parent) {
         TextView textViewUsername = convertView.findViewById(R.id.text_view_username);
-        TextView textViewCompany = convertView.findViewById(R.id.text_view_company);
         TextView textViewRepositories = convertView.findViewById(R.id.text_view_repositories);
         TextView textViewFollowers = convertView.findViewById(R.id.text_view_followers);
         ShapeableImageView avatar = convertView.findViewById(R.id.avatar);
@@ -29,7 +28,6 @@ class FollowedUser {
             MySingleton.getInstance(parent.getContext()).addToRequestQueue(imageRequest);
 
             textViewUsername.setText(data.getString("login"));
-            textViewCompany.setText(data.getString("type"));
             if (Integer.parseInt(data.getString("public_repos")) <= 0) {
                 textViewRepositories.setText(R.string.no_repo);
             }
