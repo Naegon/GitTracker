@@ -6,30 +6,27 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.Vector;
 
 class RepoAdapter extends BaseAdapter {
-    private final Vector<JSONObject> data;
+    private final Vector<Repository> repositories;
 
     public RepoAdapter() {
-        data = new Vector<>();
+        repositories = new Vector<>();
     }
 
-    public void add(Object data) {
-        this.data.add((JSONObject)data);
+    public void add(Repository repository) {
+        this.repositories.add(repository);
     }
 
     @Override
     public int getCount() {
-        return data.size();
+        return repositories.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return data.get(position);
+        return repositories.get(position);
     }
 
     @Override
@@ -49,22 +46,18 @@ class RepoAdapter extends BaseAdapter {
         TextView textViewDesc = convertView.findViewById(R.id.text_view_description);
         TextView textViewLanguage = convertView.findViewById(R.id.text_view_language);
 
-        try {
-            JSONObject repo = data.get(position);
-            textViewAppName.setText(repo.getString("name"));
-            textViewOwner.setText(repo.getJSONObject("owner").getString("login"));
+        Repository repo = repositories.get(position);
+        textViewAppName.setText(repo.getName());
+        textViewOwner.setText(repo.getOwnerLogin());
 
-            String language = repo.getString("language");
-            if (language.equals("null")) textViewLanguage.setVisibility(View.GONE);
-            else textViewLanguage.setText(language);
+        String language = repo.getLanguage();
+        if (language.equals("null")) textViewLanguage.setVisibility(View.GONE);
+        else textViewLanguage.setText(language);
 
-            String description = repo.getString("description");
-            if (!description.equals("null")) textViewDesc.setText(description);
-            else {
-                textViewDesc.setVisibility(View.GONE);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
+        String description = repo.getDescription();
+        if (!description.equals("null")) textViewDesc.setText(description);
+        else {
+            textViewDesc.setVisibility(View.GONE);
         }
 
         return convertView;

@@ -4,6 +4,9 @@ import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 class UserClass implements Parcelable {
     private String login;
     private String avatar_url;
@@ -23,6 +26,21 @@ class UserClass implements Parcelable {
         this.public_repos = public_repos;
         this.total_private_repos = total_private_repos;
         this.followers = followers;
+    }
+
+    public UserClass(JSONObject data) {
+        try {
+            this.login = data.getString("login");
+            this.avatar_url = data.getString("avatar_url");
+            this.avatar = null;
+            this.type = data.getString("type");
+            this.company = data.getString("company");
+            this.public_repos = Integer.parseInt(data.getString("public_repos"));
+            this.total_private_repos = Integer.parseInt(data.getString("total_private_repos"));
+            this.followers = Integer.parseInt(data.getString("followers"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getLogin() {

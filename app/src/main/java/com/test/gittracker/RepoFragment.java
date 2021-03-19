@@ -85,7 +85,7 @@ public class RepoFragment extends Fragment {
 
                     for (int i = 0; i < result.length(); i++) {
                         Log.i("Git_API", result.get(i).toString());
-                        repoAdapter.add(result.get(i));
+                        repoAdapter.add(new Repository(result.getJSONObject(i)));
                     }
 
                     getActivity().runOnUiThread(() -> repoAdapter.notifyDataSetChanged());
