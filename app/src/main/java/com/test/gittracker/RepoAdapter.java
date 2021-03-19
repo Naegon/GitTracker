@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.google.android.material.imageview.ShapeableImageView;
+
 import java.util.Vector;
 
 class RepoAdapter extends BaseAdapter {
@@ -58,6 +60,11 @@ class RepoAdapter extends BaseAdapter {
         if (!description.equals("null")) textViewDesc.setText(description);
         else {
             textViewDesc.setVisibility(View.GONE);
+        }
+
+        if (repo.isPrivate()) {
+            ShapeableImageView imgPublic = convertView.findViewById(R.id.imgPublic);
+            imgPublic.setImageResource(R.drawable.ic_padlock);
         }
 
         return convertView;

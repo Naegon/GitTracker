@@ -8,12 +8,14 @@ class Repository {
     private UserClass owner;
     private String description;
     private String language;
+    private boolean isPrivate;
 
-    public Repository(String name, UserClass owner, String avatar_url, String description, String language) {
+    public Repository(String name, UserClass owner, String avatar_url, String description, String language, boolean isPrivate) {
         this.name = name;
         this.owner = owner;
         this.description = description;
         this.language = language;
+        this.isPrivate = isPrivate;
     }
 
     public Repository(JSONObject data) {
@@ -22,6 +24,7 @@ class Repository {
             this.description = data.getString("description");
             this.language = data.getString("language");
             this.owner = new UserClass(data.getJSONObject("owner"));
+            this.isPrivate = data.getString("private").equals("true");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -35,31 +38,19 @@ class Repository {
         this.name = name;
     }
 
-    public UserClass getOwner() {
-        return owner;
-    }
-
     public String getOwnerLogin() {
         return owner.getLogin();
-    }
-
-    public void setOwner(UserClass owner) {
-        this.owner = owner;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getLanguage() {
         return language;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
+    public boolean isPrivate() {
+        return isPrivate;
     }
 }
