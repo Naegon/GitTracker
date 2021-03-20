@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 import androidx.preference.PreferenceManager;
@@ -49,12 +48,9 @@ class UserComponent {
             String login = sharedPreferences.getString("login", null);
             String token = sharedPreferences.getString("token", null);
 
-            UserDetailsAsyncTask task = new UserDetailsAsyncTask(new WeakReference<>(user), login, token);
+            UserDetailsAsyncTask task = new UserDetailsAsyncTask(new WeakReference<>(user), convertView, login, token);
             task.execute("https://api.github.com/users/" +  user.getLogin() + "?accept=application/vnd.github.v3+json");
-            Toast.makeText(convertView.getContext(), String.valueOf(user.getFollowers()), Toast.LENGTH_SHORT).show();
-
-
-
+//            Toast.makeText(convertView.getContext(), String.valueOf(user.getFollowers()), Toast.LENGTH_SHORT).show();
         }
     };
 }
