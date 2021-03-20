@@ -68,6 +68,10 @@ class User implements Parcelable {
         return followers;
     }
 
+    public void setFollowers(int followers) {
+        this.followers = followers;
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(login);

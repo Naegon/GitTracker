@@ -1,5 +1,6 @@
 package com.test.gittracker;
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.ImageView;
@@ -7,10 +8,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
+import androidx.preference.PreferenceManager;
 
 import com.android.volley.Response;
 import com.android.volley.toolbox.ImageRequest;
 import com.google.android.material.imageview.ShapeableImageView;
+
+import java.lang.ref.WeakReference;
 
 class UserComponent {
     private final TextView textViewUsername;
@@ -20,7 +24,6 @@ class UserComponent {
     private final CardView cardView;
     private final User user;
     private String url = "";
-
 
     public UserComponent(View convertView, User user) {
         this.convertView = convertView;
@@ -42,7 +45,16 @@ class UserComponent {
     private final View.OnClickListener showUserData = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Toast.makeText(convertView.getContext(), user.getLogin(), Toast.LENGTH_LONG).show();
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(convertView.getContext());
+            String login = sharedPreferences.getString("login", null);
+            String token = sharedPreferences.getString("token", null);
+
+            UserDetailsAsyncTask task = new UserDetailsAsyncTask(new WeakReference<>(user), login, token);
+            task.execute("https://api.github.com/users/" +  user.getLogin() + "?accept=application/vnd.github.v3+json");
+            Toast.makeText(convertView.getContext(), String.valueOf(user.getFollowers()), Toast.LENGTH_SHORT).show();
+
+
+
         }
     };
 }

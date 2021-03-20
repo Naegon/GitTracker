@@ -49,7 +49,7 @@ public class UserFragment extends Fragment {
         String login = sharedPreferences.getString("login", null);
         String token = sharedPreferences.getString("token", null);
 
-        UserAsyncTask task = new UserAsyncTask(new WeakReference<>(UserAdapter), login, token);
+        UserListAsyncTask task = new UserListAsyncTask(new WeakReference<>(UserAdapter), login, token);
         task.execute();
 
         return view;
