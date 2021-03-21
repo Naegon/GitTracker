@@ -59,14 +59,14 @@ public class RepositoryDialog {
 
         try {
             textViewProjectName.setText(repository.getName());
-            textViewDescription.setText(repository.getDescription());
-            textViewCreated.setText(dialog.getContext().getString(R.string.dialog_type, repository.getCreatedAt()));
-            textViewUpdated.setText(dialog.getContext().getString(R.string.dialog_type, repository.getUpdatedAt()));
-            textViewPushed.setText(dialog.getContext().getString(R.string.dialog_type, repository.getPushedAt()));
-            textViewStars.setText(dialog.getContext().getString(R.string.dialog_following, repository.getStars()));
+            if (!repository.getDescription().equals("null")) textViewDescription.setText(repository.getDescription());
+            textViewCreated.setText(dialog.getContext().getString(R.string.dialog_created_at, repository.getCreatedAt()));
+            textViewUpdated.setText(dialog.getContext().getString(R.string.dialog_updated_at, repository.getUpdatedAt()));
+            textViewPushed.setText(dialog.getContext().getString(R.string.dialog_pushed_at, repository.getPushedAt()));
+            textViewStars.setText(dialog.getContext().getString(R.string.dialog_stars, repository.getStars()));
 
             if (!repository.getLanguage().equals("null")) {
-                textViewLanguage.setText(dialog.getContext().getString(R.string.dialog_company, repository.getLanguage()));
+                textViewLanguage.setText(dialog.getContext().getString(R.string.dialog_language, repository.getLanguage()));
                 textViewLanguage.setVisibility(View.VISIBLE);
             }
 

@@ -37,4 +37,12 @@
     <string name="dialog_email">Email : %1$s</string>
     <string name="dialog_followers">Abonnés : %1$d</string>
     <string name="dialog_following">Abonnements : %1$d</string>
+    <string name="exit">Fermer</string>
+    <string name="dialog_created_at">Créé le : %1$s</string>
+    <string name="dialog_updated_at">Mis à jour le : %1$s</string>
+    <string name="dialog_pushed_at">Poussé le : %1$s</string>
+    <string name="dialog_stars">Étoiles : %1$d</string>
+    <string name="dialog_language">Langage: %1$s</string>
+    <string name="repositories">Dépôts</string>
+    <string name="following">Abonnements</string>
 </resources>

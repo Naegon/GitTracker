@@ -17,11 +17,13 @@
     <string name="nothin_to_show">Nothin to show here. Try making a research!</string>
     <string name="no_item">No result</string>
     <string name="repository">Repository</string>
+    <string name="repositories">Repositories</string>
     <string name="user">User</string>
     <string name="search_user">Search for an user</string>
     <string name="follow">Follow</string>
     <string name="show_result">Showing %1$d of %2$d results</string>
     <string name="unfollow">Unfollow</string>
+    <string name="following">Following</string>
 
     <string name="repo_count">%1$s repositories</string>
     <string name="follower_count">%1$s followers</string>
@@ -37,5 +39,12 @@
     <string name="dialog_email">Email: %1$s</string>
     <string name="dialog_followers">Followers: %1$d</string>
     <string name="dialog_following">Following: %1$d</string>
+
+    <!--    Repository dialog box-->
     <string name="exit">Exit</string>
+    <string name="dialog_created_at">Created at: %1$s</string>
+    <string name="dialog_updated_at">Updated at: %1$s</string>
+    <string name="dialog_pushed_at">Pushed at: %1$s</string>
+    <string name="dialog_stars">Stars: %1$d</string>
+    <string name="dialog_language">Language: %1$s</string>
 </resources>
