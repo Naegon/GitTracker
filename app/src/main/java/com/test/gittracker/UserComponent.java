@@ -1,13 +1,11 @@
 package com.test.gittracker;
 
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
-import androidx.preference.PreferenceManager;
 
 import com.android.volley.Response;
 import com.android.volley.toolbox.ImageRequest;
@@ -52,18 +50,7 @@ class UserComponent {
         @Override
         public void onClick(View v) {
             User user = userRef.get();
-
-            if (user.isDetailed()) new UserDialog().showDialog(getActivity(convertView), user);
-
-            else {
-                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(convertView.getContext());
-                String login = sharedPreferences.getString("login", null);
-                String token = sharedPreferences.getString("token", null);
-
-
-                UserDetailsAsyncTask task = new UserDetailsAsyncTask(new WeakReference<>(user), convertView, login, token);
-                task.execute("https://api.github.com/users/" +  user.getLogin() + "?accept=application/vnd.github.v3+json");
-            }
+            new UserDialog().showDialog(getActivity(convertView), user);
         }
     };
 }

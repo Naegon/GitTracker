@@ -2,14 +2,16 @@ package com.test.gittracker;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.google.android.material.imageview.ShapeableImageView;
+import androidx.preference.PreferenceManager;
+
+import java.lang.ref.WeakReference;
 
 public class UserDialog {
     public void showDialog(Activity activity, User user){
@@ -19,42 +21,15 @@ public class UserDialog {
         dialog.setContentView(R.layout.user_dialog);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        ShapeableImageView avatar = dialog.findViewById(R.id.avatar);
-        TextView textViewHireable = dialog.findViewById(R.id.textViewHireable);
-        TextView textViewUsername = dialog.findViewById(R.id.textViewUsername);
-        TextView textViewType = dialog.findViewById(R.id.textViewType);
-        TextView textViewCompany = dialog.findViewById(R.id.textViewCompany);
-        TextView textViewEmail = dialog.findViewById(R.id.textViewEmail);
-        TextView textViewFollowers = dialog.findViewById(R.id.textViewFollowers);
-        TextView textViewFollowing = dialog.findViewById(R.id.textViewFollowing);
-        TextView btnUnfollow = dialog.findViewById(R.id.btnUnfollow);
-
-        try {
-            avatar.setImageBitmap(user.getAvatar());
-            textViewUsername.setText(user.getLogin());
-            textViewType.setText(dialog.getContext().getString(R.string.dialog_type, user.getType()));
-            textViewFollowers.setText(dialog.getContext().getString(R.string.dialog_followers, user.getFollowers()));
-            textViewFollowing.setText(dialog.getContext().getString(R.string.dialog_following, user.getFollowing()));
-
-            if (user.isHireable()) {
-                textViewHireable.setVisibility(View.VISIBLE);
-            }
-
-            if (!user.getCompany().equals("null")) {
-                textViewCompany.setText(dialog.getContext().getString(R.string.dialog_company, user.getCompany()));
-                textViewCompany.setVisibility(View.VISIBLE);
-            }
-
-            if (!user.getEmail().equals("null")) {
-                textViewEmail.setText(dialog.getContext().getString(R.string.dialog_email, user.getEmail()));
-                textViewEmail.setVisibility(View.VISIBLE);
-            }
-        } catch (Error e) {
-            e.printStackTrace();
-            dialog.dismiss();
-            return;
+        if (!user.isDetailed()) {
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(dialog.getContext());
+            String login = sharedPreferences.getString("login", null);
+            String token = sharedPreferences.getString("token", null);
+            UserDetailsAsyncTask task = new UserDetailsAsyncTask(new WeakReference<>(user), dialog.getWindow().getDecorView(), login, token, true);
+            task.execute("https://api.github.com/users/" + user.getLogin() + "?accept=application/vnd.github.v3+json");
         }
 
+        Button btnUnfollow = dialog.findViewById(R.id.btnUnfollow);
         btnUnfollow.setOnClickListener(v -> dialog.dismiss());
         dialog.show();
 

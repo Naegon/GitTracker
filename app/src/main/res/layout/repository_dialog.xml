@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/user_dialog"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/corner_radius"
+        app:cardElevation="1dp"
+        app:contentPaddingTop="@dimen/padding_vertical"
+        app:contentPaddingBottom="@dimen/padding_vertical"
+        app:contentPaddingLeft="@dimen/padding_horizontal"
+        app:contentPaddingRight="@dimen/padding_horizontal"
+        android:layout_marginTop="@dimen/margin_vertical"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_double" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textViewProjectName"
+                android:textSize="@dimen/title"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:text="Project name" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textViewDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+                android:textColor="@color/grey_light"
+                android:gravity="center"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:text="Description" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textViewLanguage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_vertical"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:visibility="gone"
+                android:text="Language: " />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textViewCreated"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:text="Created: " />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textViewUpdated"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:text="Updated: " />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textViewPushed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:text="Pushed at: " />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textViewStars"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:text="Stars: " />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnUnfollow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/unfollow"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_view_learn_more"
+                android:layout_marginStart="@dimen/margin_horizontal" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>
