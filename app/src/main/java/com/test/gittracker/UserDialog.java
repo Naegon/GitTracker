@@ -27,8 +27,8 @@ public class UserDialog {
         UserDetailsAsyncTask task = new UserDetailsAsyncTask(new WeakReference<>(user), dialog.getWindow().getDecorView(), login, token, true);
         task.execute("https://api.github.com/users/" + user.getLogin() + "?accept=application/vnd.github.v3+json");
 
-        Button btnUnfollow = dialog.findViewById(R.id.btnUnfollow);
-        btnUnfollow.setOnClickListener(v -> dialog.dismiss());
+        Button btnExit = dialog.findViewById(R.id.btnExit);
+        btnExit.setOnClickListener(v -> dialog.dismiss());
         dialog.show();
 
         Window window = dialog.getWindow();

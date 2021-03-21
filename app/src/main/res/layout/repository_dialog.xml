@@ -84,10 +84,10 @@
                 android:text="Stars: " />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnUnfollow"
+                android:id="@+id/btnQuitRepo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/unfollow"
+                android:text="@string/exit"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text_view_learn_more"
                 android:layout_marginStart="@dimen/margin_horizontal" />

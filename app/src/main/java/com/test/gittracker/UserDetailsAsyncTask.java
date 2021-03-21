@@ -79,7 +79,7 @@ class UserDetailsAsyncTask extends AsyncTask<String, Void, JSONObject> {
             TextView textViewEmail = convertView.findViewById(R.id.textViewEmail);
             TextView textViewFollowers = convertView.findViewById(R.id.textViewFollowers);
             TextView textViewFollowing = convertView.findViewById(R.id.textViewFollowing);
-            TextView btnUnfollow = convertView.findViewById(R.id.btnUnfollow);
+            TextView btnExit = convertView.findViewById(R.id.btnExit);
 
             try {
                 avatar.setImageBitmap(target.getAvatar());

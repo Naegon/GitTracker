@@ -44,8 +44,10 @@ public class RepositoryDialog {
         ImageRequest imageRequest = new ImageRequest(repository.getOwner().getAvatar_url(), rep_listener, 0, 0, ImageView.ScaleType.CENTER_CROP, null, null);
         MySingleton.getInstance(dialog.getContext()).addToRequestQueue(imageRequest);
 
-        Button btnUnfollow = dialog.findViewById(R.id.btnUnfollow);
-        btnUnfollow.setOnClickListener(v -> dialog.dismiss());
+        Button btnExit = dialog.findViewById(R.id.btnQuitRepo);
+        btnExit.setOnClickListener(v -> dialog.dismiss());
+        Button userQuit = dialog.findViewById(R.id.btnExit);
+        userQuit.setVisibility(View.GONE);
 
         TextView textViewProjectName = dialog.findViewById(R.id.textViewProjectName);
         TextView textViewDescription = dialog.findViewById(R.id.textViewDescription);
