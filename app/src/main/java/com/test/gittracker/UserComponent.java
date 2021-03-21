@@ -21,18 +21,23 @@ class UserComponent {
     private final TextView learnMore;
     private final View convertView;
     private final CardView cardView;
-    private final User user;
+    private final WeakReference<User> userRef;
     private String url = "";
 
-    public UserComponent(View convertView, User user) {
+    public UserComponent(View convertView, WeakReference<User> userRef) {
         this.convertView = convertView;
-        this.user = user;
+        this.userRef = userRef;
+
+        User user = userRef.get();
         textViewUsername = convertView.findViewById(R.id.text_view_username);
         avatar = convertView.findViewById(R.id.avatar);
         learnMore = convertView.findViewById(R.id.text_view_learn_more);
         cardView = convertView.findViewById(R.id.card);
 
-        Response.Listener<Bitmap> rep_listener = avatar::setImageBitmap;
+        Response.Listener<Bitmap> rep_listener = bm -> {
+            user.setAvatar(bm);
+            avatar.setImageBitmap(bm);
+        };
 
         ImageRequest imageRequest = new ImageRequest(user.getAvatar_url(), rep_listener, 0, 0, ImageView.ScaleType.CENTER_CROP, null, null);
         MySingleton.getInstance(convertView.getContext()).addToRequestQueue(imageRequest);
@@ -47,6 +52,7 @@ class UserComponent {
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(convertView.getContext());
             String login = sharedPreferences.getString("login", null);
             String token = sharedPreferences.getString("token", null);
+            User user = userRef.get();
 
             UserDetailsAsyncTask task = new UserDetailsAsyncTask(new WeakReference<>(user), convertView, login, token);
             task.execute("https://api.github.com/users/" +  user.getLogin() + "?accept=application/vnd.github.v3+json");

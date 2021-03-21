@@ -11,6 +11,8 @@ import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.material.imageview.ShapeableImageView;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -84,6 +86,7 @@ class UserDetailsAsyncTask extends AsyncTask<String, Void, JSONObject> {
             dialog.setContentView(R.layout.dialog);
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
+            ShapeableImageView avatar = dialog.findViewById(R.id.avatar);
             TextView textViewHireable = dialog.findViewById(R.id.textViewHireable);
             TextView textViewUsername = dialog.findViewById(R.id.textViewUsername);
             TextView textViewType = dialog.findViewById(R.id.textViewType);
@@ -94,6 +97,7 @@ class UserDetailsAsyncTask extends AsyncTask<String, Void, JSONObject> {
             TextView btnUnfollow = dialog.findViewById(R.id.btnUnfollow);
 
             try {
+                avatar.setImageBitmap(user.getAvatar());
                 textViewUsername.setText(user.getLogin());
                 textViewType.setText(user.getType());
                 textViewCompany.setText(user.getLogin());

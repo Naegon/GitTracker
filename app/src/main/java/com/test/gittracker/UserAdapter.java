@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import java.lang.ref.WeakReference;
 import java.util.Vector;
 
 class UserAdapter extends BaseAdapter {
@@ -39,7 +40,7 @@ class UserAdapter extends BaseAdapter {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
             convertView = inflater.inflate(R.layout.user, parent, false);
         }
-        new UserComponent(convertView, users.get(position));
+        new UserComponent(convertView, new WeakReference<>(users.get(position)));
         return convertView;
     }
 }

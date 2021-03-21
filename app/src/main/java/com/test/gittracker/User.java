@@ -52,6 +52,10 @@ class User implements Parcelable {
         return avatar;
     }
 
+    public void setAvatar(Bitmap avatar) {
+        this.avatar = avatar;
+    }
+
     public String getType() {
         return type;
     }
