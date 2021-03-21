@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:layout_marginHorizontal="@dimen/margin_horizontal_double" >
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/avatar"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
+        app:srcCompat="@drawable/git_avatar"
+        app:shapeAppearanceOverlay="@style/circleImageView"
+        android:translationY="42dp"
+        android:translationZ="2dp"
+        android:layout_gravity="center" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/corner_radius"
+        app:cardElevation="1dp"
+        app:contentPaddingTop="@dimen/padding_vertical"
+        app:contentPaddingBottom="@dimen/padding_vertical"
+        app:contentPaddingLeft="@dimen/padding_horizontal"
+        app:contentPaddingRight="@dimen/padding_horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="42dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textViewUsername"
+                android:textSize="@dimen/title"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:text="Username" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textViewHireable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+                android:textColor="@color/grey_light"
+                android:gravity="center"
+                android:visibility="gone"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:text="@string/dialog_hireable" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textViewType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_vertical"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:text="Type: " />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textViewCompany"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:text="Company: " />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textViewEmail"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:text="Email: " />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textViewFollowers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:text="Followers: " />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textViewFollowing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_horizontal"
+                android:text="Following: " />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnExit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/exit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_view_learn_more"
+                android:layout_marginStart="@dimen/margin_horizontal" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>

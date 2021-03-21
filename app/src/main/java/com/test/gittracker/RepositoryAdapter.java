@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import java.lang.ref.WeakReference;
 import java.util.Vector;
 
 class RepositoryAdapter extends BaseAdapter {
@@ -39,8 +40,7 @@ class RepositoryAdapter extends BaseAdapter {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
             convertView = inflater.inflate(R.layout.repository, parent, false);
         }
-
-        new RepositoryComponent(convertView, repositories.get(position));
+        new RepositoryComponent(convertView, new WeakReference<>(repositories.get(position)));
         return convertView;
     }
 }

@@ -15,14 +15,14 @@ import java.net.URL;
 
 import static com.test.gittracker.Utils.readStream;
 
-class UserAsyncTask extends AsyncTask<String, Void, JSONArray> {
+class UserListAsyncTask extends AsyncTask<String, Void, JSONArray> {
     private URL url;
     private JSONArray result;
     private final WeakReference<UserAdapter> userAdapter;
     private String login;
     private String token;
 
-    public UserAsyncTask(WeakReference<UserAdapter> userAdapter, String login, String token) {
+    public UserListAsyncTask(WeakReference<UserAdapter> userAdapter, String login, String token) {
         this.userAdapter = userAdapter;
         this.login = login;
         this.token = token;

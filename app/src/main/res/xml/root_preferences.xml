@@ -19,21 +19,4 @@
             app:defaultValue="en"
             app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
-
-    <PreferenceCategory
-        app:title="@string/profile">
-
-        <EditTextPreference
-            app:key="pseudo"
-            app:title="@string/pseudo"
-            app:useSimpleSummaryProvider="true"
-            android:positiveButtonText="@string/change"
-            android:negativeButtonText="@string/back_btn"
-            android:persistent="true"/>
-
-        <EditTextPreference
-            app:key="password"
-            app:title="@string/change_password"
-            app:useSimpleSummaryProvider="false" />
-    </PreferenceCategory>
 </PreferenceScreen>
