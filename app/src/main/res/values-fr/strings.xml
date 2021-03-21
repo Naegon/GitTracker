@@ -29,4 +29,12 @@
     <string name="no_followers">Aucun abonné</string>
     <string name="token">Jeton</string>
     <string name="how_token">Comment obtenir un jeton?</string>
+
+    <!--    User dialog box-->
+    <string name="dialog_hireable">Cet utilisateur est à l\'écoute d\'oportunités !</string>
+    <string name="dialog_type">Type : %1$s</string>
+    <string name="dialog_company">Entreprise : %1$s</string>
+    <string name="dialog_email">Email : %1$s</string>
+    <string name="dialog_followers">Abonnés : %1$d</string>
+    <string name="dialog_following">Abonnements : %1$d</string>
 </resources>

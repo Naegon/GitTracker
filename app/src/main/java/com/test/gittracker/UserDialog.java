@@ -32,17 +32,16 @@ public class UserDialog {
             textViewHireable.setText(user.isHireable()?"Hireable":"Non hireable");
             avatar.setImageBitmap(user.getAvatar());
             textViewUsername.setText(user.getLogin());
-            textViewType.setText(user.getType());
-            textViewCompany.setText(user.getCompany());
-            textViewEmail.setText(user.getEmail());
-            textViewFollowers.setText(String.valueOf(user.getFollowers()));
-            textViewFollowing.setText(String.valueOf(user.getFollowing()));
+            textViewType.setText(dialog.getContext().getString(R.string.dialog_type, user.getType()));
+            textViewCompany.setText(dialog.getContext().getString(R.string.dialog_company, user.getCompany()));
+            textViewEmail.setText(dialog.getContext().getString(R.string.dialog_email, user.getEmail()));
+            textViewFollowers.setText(dialog.getContext().getString(R.string.dialog_followers, user.getFollowers()));
+            textViewFollowing.setText(dialog.getContext().getString(R.string.dialog_following, user.getFollowing()));
         } catch (Error e) {
             e.printStackTrace();
             dialog.dismiss();
             return;
         }
-
 
         btnUnfollow.setOnClickListener(v -> dialog.dismiss());
         dialog.show();

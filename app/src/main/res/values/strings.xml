@@ -29,4 +29,12 @@
     <string name="no_followers">No followers</string>
     <string name="token">Token</string>
     <string name="how_token">How to get a token?</string>
+
+    <!--    User dialog box-->
+    <string name="dialog_hireable">This user is open to opportunities!</string>
+    <string name="dialog_type">Type: %1$s</string>
+    <string name="dialog_company">Company: %1$s</string>
+    <string name="dialog_email">Email: %1$s</string>
+    <string name="dialog_followers">Followers: %1$d</string>
+    <string name="dialog_following">Following: %1$d</string>
 </resources>
