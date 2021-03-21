@@ -53,8 +53,9 @@
                 android:textStyle="italic"
                 android:textColor="@color/grey_light"
                 android:gravity="center"
+                android:visibility="gone"
                 android:layout_marginHorizontal="@dimen/margin_horizontal"
-                android:text="This user is open to opportunities!" />
+                android:text="@string/dialog_hireable" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textViewType"
@@ -68,11 +69,13 @@
                 android:id="@+id/textViewCompany"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_marginHorizontal="@dimen/margin_horizontal"
                 android:text="Company: " />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textViewEmail"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin_horizontal"

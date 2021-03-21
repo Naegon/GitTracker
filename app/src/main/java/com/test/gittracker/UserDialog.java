@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.view.View;
 import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -29,14 +30,25 @@ public class UserDialog {
         TextView btnUnfollow = dialog.findViewById(R.id.btnUnfollow);
 
         try {
-            textViewHireable.setText(user.isHireable()?"Hireable":"Non hireable");
             avatar.setImageBitmap(user.getAvatar());
             textViewUsername.setText(user.getLogin());
             textViewType.setText(dialog.getContext().getString(R.string.dialog_type, user.getType()));
-            textViewCompany.setText(dialog.getContext().getString(R.string.dialog_company, user.getCompany()));
-            textViewEmail.setText(dialog.getContext().getString(R.string.dialog_email, user.getEmail()));
             textViewFollowers.setText(dialog.getContext().getString(R.string.dialog_followers, user.getFollowers()));
             textViewFollowing.setText(dialog.getContext().getString(R.string.dialog_following, user.getFollowing()));
+
+            if (user.isHireable()) {
+                textViewHireable.setVisibility(View.VISIBLE);
+            }
+
+            if (!user.getCompany().equals("null")) {
+                textViewCompany.setText(dialog.getContext().getString(R.string.dialog_company, user.getCompany()));
+                textViewCompany.setVisibility(View.VISIBLE);
+            }
+
+            if (!user.getEmail().equals("null")) {
+                textViewEmail.setText(dialog.getContext().getString(R.string.dialog_email, user.getEmail()));
+                textViewEmail.setVisibility(View.VISIBLE);
+            }
         } catch (Error e) {
             e.printStackTrace();
             dialog.dismiss();
