@@ -2,11 +2,13 @@ package com.test.gittracker;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.util.Base64;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -80,19 +82,35 @@ class UserDetailsAsyncTask extends AsyncTask<String, Void, JSONObject> {
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.setCancelable(false);
             dialog.setContentView(R.layout.dialog);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-            TextView textViewUsername = dialog.findViewById(R.id.text_view_username);
+            TextView textViewHireable = dialog.findViewById(R.id.textViewHireable);
+            TextView textViewUsername = dialog.findViewById(R.id.textViewUsername);
+            TextView textViewType = dialog.findViewById(R.id.textViewType);
+            TextView textViewCompany = dialog.findViewById(R.id.textViewCompany);
+            TextView textViewEmail = dialog.findViewById(R.id.textViewEmail);
+            TextView textViewFollowers = dialog.findViewById(R.id.textViewFollowers);
+            TextView textViewFollowing = dialog.findViewById(R.id.textViewFollowing);
+            TextView btnUnfollow = dialog.findViewById(R.id.btnUnfollow);
+
             try {
-                textViewUsername.setText(String.valueOf(user.getFollowers()));
+                textViewUsername.setText(user.getLogin());
+                textViewType.setText(user.getType());
+                textViewCompany.setText(user.getLogin());
+                textViewEmail.setText(user.getLogin());
+                textViewFollowers.setText(String.valueOf(user.getFollowers()));
+                textViewFollowing.setText(String.valueOf(user.getFollowers()));
             } catch (Error e) {
                 e.printStackTrace();
                 dialog.dismiss();
                 return;
             }
 
-            Button btnFollow = dialog.findViewById(R.id.btn_follow);
-            btnFollow.setOnClickListener(v -> dialog.dismiss());
+            btnUnfollow.setOnClickListener(v -> dialog.dismiss());
             dialog.show();
+
+            Window window = dialog.getWindow();
+            window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         }
     }
 }
