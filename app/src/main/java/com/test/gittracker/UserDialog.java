@@ -36,7 +36,7 @@ public class UserDialog {
             textViewCompany.setText(user.getCompany());
             textViewEmail.setText(user.getEmail());
             textViewFollowers.setText(String.valueOf(user.getFollowers()));
-            textViewFollowing.setText(String.valueOf(user.getFollowers()));
+            textViewFollowing.setText(String.valueOf(user.getFollowing()));
         } catch (Error e) {
             e.printStackTrace();
             dialog.dismiss();

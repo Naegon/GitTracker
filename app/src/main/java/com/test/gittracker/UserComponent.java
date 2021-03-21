@@ -15,6 +15,8 @@ import com.google.android.material.imageview.ShapeableImageView;
 
 import java.lang.ref.WeakReference;
 
+import static com.test.gittracker.Utils.getActivity;
+
 class UserComponent {
     private final TextView textViewUsername;
     private final ShapeableImageView avatar;
@@ -51,15 +53,17 @@ class UserComponent {
         public void onClick(View v) {
             User user = userRef.get();
 
-//            if (user.ge)
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(convertView.getContext());
-            String login = sharedPreferences.getString("login", null);
-            String token = sharedPreferences.getString("token", null);
+            if (user.isDetailed()) new UserDialog().showDialog(getActivity(convertView), user);
+
+            else {
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(convertView.getContext());
+                String login = sharedPreferences.getString("login", null);
+                String token = sharedPreferences.getString("token", null);
 
 
-            UserDetailsAsyncTask task = new UserDetailsAsyncTask(new WeakReference<>(user), convertView, login, token);
-            task.execute("https://api.github.com/users/" +  user.getLogin() + "?accept=application/vnd.github.v3+json");
-//            Toast.makeText(convertView.getContext(), String.valueOf(user.getFollowers()), Toast.LENGTH_SHORT).show();
+                UserDetailsAsyncTask task = new UserDetailsAsyncTask(new WeakReference<>(user), convertView, login, token);
+                task.execute("https://api.github.com/users/" +  user.getLogin() + "?accept=application/vnd.github.v3+json");
+            }
         }
     };
 }

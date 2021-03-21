@@ -69,6 +69,7 @@ class UserDetailsAsyncTask extends AsyncTask<String, Void, JSONObject> {
             e.printStackTrace();
         }
 
+        target.setDetailed(true);
         new UserDialog().showDialog(getActivity(convertView), target);
     }
 }

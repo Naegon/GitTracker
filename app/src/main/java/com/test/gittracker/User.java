@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 class User implements Parcelable {
+    private boolean isDetailed;
     private String login;
     private String avatar_url;
     private Bitmap avatar;
@@ -20,6 +21,7 @@ class User implements Parcelable {
 
     public User(JSONObject data) {
         try {
+            this.isDetailed = false;
             this.login = data.getString("login");
             this.avatar_url = data.getString("avatar_url");
             this.avatar = null;
@@ -32,6 +34,14 @@ class User implements Parcelable {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean isDetailed() {
+        return isDetailed;
+    }
+
+    public void setDetailed(boolean detailed) {
+        isDetailed = detailed;
     }
 
     public String getLogin() {
@@ -107,6 +117,7 @@ class User implements Parcelable {
     }
 
     protected User(Parcel in) {
+        isDetailed = (in.readInt() == 1);
         login = in.readString();
         avatar_url = in.readString();
         avatar = in.readParcelable(Bitmap.class.getClassLoader());
@@ -120,6 +131,7 @@ class User implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(isDetailed?1:0);
         dest.writeString(login);
         dest.writeString(avatar_url);
         dest.writeParcelable(avatar, flags);
