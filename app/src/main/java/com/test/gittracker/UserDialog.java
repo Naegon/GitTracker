@@ -21,13 +21,11 @@ public class UserDialog {
         dialog.setContentView(R.layout.user_dialog);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        if (!user.isDetailed()) {
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(dialog.getContext());
-            String login = sharedPreferences.getString("login", null);
-            String token = sharedPreferences.getString("token", null);
-            UserDetailsAsyncTask task = new UserDetailsAsyncTask(new WeakReference<>(user), dialog.getWindow().getDecorView(), login, token, true);
-            task.execute("https://api.github.com/users/" + user.getLogin() + "?accept=application/vnd.github.v3+json");
-        }
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(dialog.getContext());
+        String login = sharedPreferences.getString("login", null);
+        String token = sharedPreferences.getString("token", null);
+        UserDetailsAsyncTask task = new UserDetailsAsyncTask(new WeakReference<>(user), dialog.getWindow().getDecorView(), login, token, true);
+        task.execute("https://api.github.com/users/" + user.getLogin() + "?accept=application/vnd.github.v3+json");
 
         Button btnUnfollow = dialog.findViewById(R.id.btnUnfollow);
         btnUnfollow.setOnClickListener(v -> dialog.dismiss());

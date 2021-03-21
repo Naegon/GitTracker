@@ -54,18 +54,7 @@ class RepositoryComponent {
         @Override
         public void onClick(View v) {
             Repository repository = repositoryRef.get();
-
-
-
-//            if (repository.isDetailed()) new UserDialog().showDialog(getActivity(convertView), user);
-
-//            else {
-
-
-//                RepositoryDetailsAsyncTask taskRepo = new RepositoryDetailsAsyncTask(new WeakReference<>(repository), convertView, login, token);
-//                taskRepo.execute("https://api.github.com/users/" +  repository.getLogin() + "?accept=application/vnd.github.v3+json");
-                new RepositoryDialog().showDialog(getActivity(convertView), repository);
-//            }
+            new RepositoryDialog().showDialog(getActivity(convertView), repository);
         }
     };
 }
