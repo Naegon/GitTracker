@@ -29,11 +29,12 @@ public class UserDialog {
         TextView btnUnfollow = dialog.findViewById(R.id.btnUnfollow);
 
         try {
+            textViewHireable.setText(user.isHireable()?"Hireable":"Non hireable");
             avatar.setImageBitmap(user.getAvatar());
             textViewUsername.setText(user.getLogin());
             textViewType.setText(user.getType());
-            textViewCompany.setText(user.getLogin());
-            textViewEmail.setText(user.getLogin());
+            textViewCompany.setText(user.getCompany());
+            textViewEmail.setText(user.getEmail());
             textViewFollowers.setText(String.valueOf(user.getFollowers()));
             textViewFollowing.setText(String.valueOf(user.getFollowers()));
         } catch (Error e) {

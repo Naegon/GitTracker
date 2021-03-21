@@ -49,10 +49,13 @@ class UserComponent {
     private final View.OnClickListener showUserData = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            User user = userRef.get();
+
+//            if (user.ge)
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(convertView.getContext());
             String login = sharedPreferences.getString("login", null);
             String token = sharedPreferences.getString("token", null);
-            User user = userRef.get();
+
 
             UserDetailsAsyncTask task = new UserDetailsAsyncTask(new WeakReference<>(user), convertView, login, token);
             task.execute("https://api.github.com/users/" +  user.getLogin() + "?accept=application/vnd.github.v3+json");

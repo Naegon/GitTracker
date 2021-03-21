@@ -54,12 +54,17 @@ class UserDetailsAsyncTask extends AsyncTask<String, Void, JSONObject> {
     }
 
     @Override
-    protected void onPostExecute(JSONObject jsonObject) {
-        super.onPostExecute(jsonObject);
+    protected void onPostExecute(JSONObject data) {
+        super.onPostExecute(data);
         User target = user.get();
 
         try {
-            target.setFollowers(Integer.parseInt(jsonObject.getString("followers")));
+            target.setHireable(data.getString("hireable").equals("true"));
+            target.setType(data.getString("type"));
+            target.setCompany(data.getString("company"));
+            target.setEmail(data.getString("email"));
+            target.setFollowers(data.getInt("followers"));
+            target.setFollowing(data.getInt("following"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
